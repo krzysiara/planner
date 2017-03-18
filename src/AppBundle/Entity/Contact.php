@@ -316,4 +316,11 @@ class Contact
     {
         return $this->address;
     }
+
+    /**
+     * @return string
+     */
+    public function getFullName(){
+        return $this->getName()." ".$this->getSurname();
+    }
 }

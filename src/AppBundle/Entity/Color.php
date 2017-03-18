@@ -173,4 +173,15 @@ class Color
     {
         return $this->contacts;
     }
+
+    /**
+     * @param string $name
+     * @param string $colorCode
+     * @return $this
+     */
+    public function setData($name, $colorCode){
+        $this->setName($name);
+        $this->setColor($colorCode);
+        return $this;
+    }
 }

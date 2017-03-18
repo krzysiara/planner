@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block pageHeader %}Note {{ note.title }}{% endblock %}
+{% block body %}
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ note.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ note.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ note.description }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ note.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('note_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('note_edit', { 'id': note.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
