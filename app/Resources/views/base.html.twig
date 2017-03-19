@@ -8,6 +8,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
         {% stylesheets
+            'bundles/app/css/bootstrap-datepicker3.css'
             'bundles/app/css/bootstrap.min.css'
             'bundles/app/css/ie10-viewport-bug-workaround.css'
             'bundles/app/css/dashboard.css'
@@ -58,8 +59,13 @@
                     <li><a href="{{ path('note_index') }}">Notes</a></li>
                 </ul>
             </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                <div class="btn-group pull-right" role="group">   {% block pageActions %}{% endblock %}</div>
+            </div>
+
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header"> {% block pageHeader %}{% endblock %}</h1>
+
+                    <h1 class="page-header"> {% block pageHeader %}{% endblock %}</h1>
 
                 {% block body %}{% endblock %}
 

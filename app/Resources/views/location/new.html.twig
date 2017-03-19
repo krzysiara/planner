@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% block pageHeader %}Location creation{% endblock %}
 {% block body %}
-    <h1>Location creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <div class="pull-right">
+        <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
+        <input  class="btn  btn-accept" type="submit" value="Create" />
+    </div>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('location_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
 {% endblock %}

@@ -17,9 +17,19 @@ class EventType extends AbstractType
         $ownerProfile = $options['owner'];
         $builder
             ->add('title', 'text')
-            ->add('startDate', 'date')
+            ->add('startDate', 'date', [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' => 'dd-MM-yyyy',
+            ])
             ->add('startTime', 'time')
-            ->add('endDate', 'date')
+            ->add('endDate', 'date', [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' => 'dd-MM-yyyy',
+            ])
             ->add('endTime', 'time')
 
             ->add('description', 'textarea')

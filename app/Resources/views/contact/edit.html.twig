@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block pageHeader %}Contact edit{% endblock %}
 {% block body %}
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="pull-right">
+        <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
+        <input  class="btn  btn-accept" type="submit" value="Edit" />
+    </div>
+
+
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('contact_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'includes/date_picker_init.html.twig' %}
 {% endblock %}

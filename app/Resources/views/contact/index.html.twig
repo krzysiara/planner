@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
-{% block pageHeader %}Contacts list{% endblock %}
+{% block pageHeader %}Contacts list {% endblock %}
+{% block pageActions %}
+    <a class="btn btn-default" href="{{ path('contact_new') }}">Add new</a>
+{% endblock %}
 {% block body %}
-    <table>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Phone</th>
                 <th>Email</th>
-                <th>Birthday</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,27 +21,15 @@
                 <td><a href="{{ path('contact_show', { 'id': contact.id }) }}">{{ contact.id }}</a></td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.surname }}</td>
-                <td>{{ contact.phone }}</td>
                 <td>{{ contact.email }}</td>
-                <td>{% if contact.birthday %}{{ contact.birthday|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('contact_show', { 'id': contact.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contact_edit', { 'id': contact.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-default" href="{{ path('contact_show', { 'id': contact.id }) }}">more</a>
+                    <a class="btn btn-default" href="{{ path('contact_edit', { 'id': contact.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('contact_new') }}">Create a new contact</a>
-        </li>
-    </ul>
 {% endblock %}

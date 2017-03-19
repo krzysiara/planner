@@ -1,0 +1,12 @@
+{% javascripts
+'bundles/app/js/bootstrap-datepicker.js'
+'bundles/app/js/ie10-viewport-bug-workaround.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+    $('.js-datepicker').datepicker({
+        format: "dd-mm-yyyy"
+
+    });
+</script>

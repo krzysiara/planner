@@ -129,7 +129,7 @@ class ContactController extends BaseController
      */
     private function createDeleteForm(Contact $contact)
     {
-        return $this->createFormBuilder()
+        return $this->createFormBuilder(null, ['attr' => ['id' => 'delete_form']])
             ->setAction($this->generateUrl('contact_delete', array('id' => $contact->getId())))
             ->setMethod('DELETE')
             ->getForm()

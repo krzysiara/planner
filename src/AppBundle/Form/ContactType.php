@@ -20,7 +20,12 @@ class ContactType extends AbstractType
             ->add('surname', 'text')
             ->add('phone')
             ->add('email', 'email')
-            ->add('birthday', 'birthday')
+            ->add('birthday', 'birthday', [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' => 'dd-MM-yyyy',
+            ])
             ->add('address', 'entity', [
                 'class' => 'AppBundle:Location',
                 'choice_label' => 'name',
