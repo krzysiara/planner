@@ -49,7 +49,7 @@ class EventController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush($event);
-
+            $this->addFlash('success', 'form.event_new.success');
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
@@ -95,7 +95,7 @@ class EventController extends BaseController
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'form.event_edit.success');
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }
 
@@ -122,6 +122,7 @@ class EventController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->addFlash('success', 'form.event_delete.success');
             $em->remove($event);
             $em->flush();
         }

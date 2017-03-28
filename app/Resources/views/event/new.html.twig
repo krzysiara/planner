@@ -2,7 +2,8 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block pageHeader %}New Event{% endblock %}
 {% block body %}
-    {% include 'includes/_base_form.html.twig' with {"form": form, "submitValue": "Create"} %}
+    {% include 'includes/_base_form.html.twig'
+    with {"form": form, "submitValue": "Create", "path": path('event_index')} %}
 {% endblock %}
 {% block javascripts %}
     {% include 'includes/_date_picker_init.html.twig' %}

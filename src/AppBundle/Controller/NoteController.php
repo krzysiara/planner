@@ -79,7 +79,7 @@ class NoteController extends BaseController
     /**
      * Add new note to location
      *
-     * @Route("/location/new/{contact}", name="note_add_to_contact")
+     * @Route("/location/new/{location}", name="note_add_to_location")
      * @Method({"GET", "POST"})
      */
     public function addNoteToLocationAction(Request $request, Location $location)

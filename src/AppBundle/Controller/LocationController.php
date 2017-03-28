@@ -48,7 +48,7 @@ class LocationController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($location);
             $em->flush();
-
+            $this->addFlash('success', 'form.location_new.success');
             return $this->redirectToRoute('location_show', array('id' => $location->getId()));
         }
 
@@ -90,7 +90,7 @@ class LocationController extends BaseController
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'form.location_edit.success');
             return $this->redirectToRoute('location_edit', array('id' => $location->getId()));
         }
 
@@ -117,6 +117,7 @@ class LocationController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->remove($location);
             $em->flush();
+            $this->addFlash('success', 'form.location_delete.success');
         }
 
         return $this->redirectToRoute('location_index');

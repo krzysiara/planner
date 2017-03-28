@@ -1,9 +1,12 @@
 {{ form_start(form) }}
-{{ form_widget(form) }}
-<div class="pull-right">
-    <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
-    <input class="btn  btn-accept" type="submit" value="{{ submitValue |trans }}" />
-</div>
+     {% if false == form.vars.valid %}
+         {% include 'includes/_base_alert.html.twig' with {"type": "danger", "message": "message.form_error"} %}
+     {% endif %}
+    {{ form_widget(form) }}
+    <div class="pull-right">
+        <a  href="{{ path }}" class="btn btn-default">Back</a>
+        <input class="btn  btn-accept" type="submit" value="{{ submitValue |trans }}" />
+    </div>
 {{ form_end(form) }}
 
 {{ tinymce_init() }}

@@ -50,6 +50,7 @@ class ContactController extends BaseController
             $em->persist($contact);
             $em->flush();
 
+            $this->addFlash('success', 'form.contact_new.success');
             return $this->redirectToRoute('contact_show', array('id' => $contact->getId()));
         }
 
@@ -88,8 +89,10 @@ class ContactController extends BaseController
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            $this->addFlash('success', 'form.contact_edit.success');
             return $this->redirectToRoute('contact_edit', array('id' => $contact->getId()));
         }
 
@@ -113,6 +116,7 @@ class ContactController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->addFlash('success', 'form.contact_delete.success');
             $em->remove($contact);
             $em->flush();
         }

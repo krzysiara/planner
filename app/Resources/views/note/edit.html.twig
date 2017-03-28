@@ -2,5 +2,5 @@
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block pageHeader %}Note edit{% endblock %}
 {% block body %}
-    {% include 'includes/_base_form.html.twig' with {"form": edit_form, "submitValue": "Edit"} %}
+    {% include 'includes/_base_form.html.twig' with {"form": edit_form, "submitValue": "Edit", "path": path('note_index')} %}
 {% endblock %}

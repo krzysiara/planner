@@ -2,5 +2,5 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block pageHeader %}New note{% endblock %}
 {% block body %}
-    {% include 'includes/_base_form.html.twig' with {"form": form, "submitValue": "Create"} %}
+    {% include 'includes/_base_form.html.twig' with {"form": form, "submitValue": "Create", "path": path('note_index')} %}
 {% endblock %}

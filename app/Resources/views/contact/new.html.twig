@@ -3,16 +3,8 @@
 {% block pageHeader %}Contacts creation{% endblock %}
 {% block body %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-
-    <div class="pull-right">
-        <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
-        <input  class="btn  btn-accept" type="submit" value="Create" />
-    </div>
-
-
-    {{ form_end(form) }}
+    {% include 'includes/_base_form.html.twig'
+    with {"form": form, "submitValue": "Create", "path": path('contact_index')} %}
 
 {% endblock %}
 
