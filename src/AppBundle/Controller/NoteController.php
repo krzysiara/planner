@@ -49,10 +49,11 @@ class NoteController extends BaseController
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::EVENT_TYPE,
             'owner' => $this->getUserProfile(),
-            'chose_parent_entity' => false
+            'chose_parent_entity' => false,
         ]);
 
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('event_show', ['id'=>$event->getId()]);
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -72,7 +73,8 @@ class NoteController extends BaseController
             'chose_parent_entity' => false
         ]);
 
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('contact_show', ['id'=>$contact->getId()]);
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -91,8 +93,8 @@ class NoteController extends BaseController
             'owner' => $this->getUserProfile(),
             'chose_parent_entity' => false
         ]);
-
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('note_show', ['id'=>$note->getId()]);
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -111,7 +113,8 @@ class NoteController extends BaseController
             'owner' => $this->getUserProfile()
         ]);
 
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('note_index');
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -127,10 +130,11 @@ class NoteController extends BaseController
         $note->setType(Note::CONTACT_TYPE);
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::CONTACT_TYPE,
-            'owner' => $this->getUserProfile()
+            'owner' => $this->getUserProfile(),
         ]);
 
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('note_index');
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -149,7 +153,8 @@ class NoteController extends BaseController
             'owner' => $this->getUserProfile()
         ]);
 
-        $response = $this->newNote($note, $form, $request);
+        $backRoute = $this->generateUrl('note_index');
+        $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
 
@@ -159,7 +164,7 @@ class NoteController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-   private function newNote(Note $note, Form $form, Request $request){
+   private function newNote(Note $note, Form $form, Request $request, $backRoute){
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid()) {
            $em = $this->getDoctrine()->getManager();
@@ -172,6 +177,7 @@ class NoteController extends BaseController
        return $this->render('note/new.html.twig', array(
            'note' => $note,
            'form' => $form->createView(),
+           'backRoute' =>$backRoute
        ));
    }
 
