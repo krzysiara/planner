@@ -32,7 +32,9 @@ class EventType extends AbstractType
             ])
             ->add('endTime', 'time')
 
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', [
+                'attr'=>['class'=>'tinymce']
+            ])
             ->add('color', 'entity', [
                 'class' => 'AppBundle:Color',
                 'choice_label' => 'name',

@@ -42,14 +42,20 @@ class Color
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity="Note", mappedBy="color")
+     * @ORM\OneToMany(targetEntity="Contact", mappedBy="color")
      */
     private $contacts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="color")
+     */
+    private $notes;
 
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->contacts = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     /**
@@ -183,5 +189,38 @@ class Color
         $this->setName($name);
         $this->setColor($colorCode);
         return $this;
+    }
+
+    /**
+     * Add notes
+     *
+     * @param \AppBundle\Entity\Note $notes
+     * @return Color
+     */
+    public function addNote(\AppBundle\Entity\Note $notes)
+    {
+        $this->notes[] = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Remove notes
+     *
+     * @param \AppBundle\Entity\Note $notes
+     */
+    public function removeNote(\AppBundle\Entity\Note $notes)
+    {
+        $this->notes->removeElement($notes);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }

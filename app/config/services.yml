@@ -4,6 +4,46 @@ parameters:
     #parameter_name: value
 
 services:
-    #service_name:
-    #    class: AppBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+
+### Repositories ###
+  app.repository.location:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Location
+
+  app.repository.contact:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Contact
+
+  app.repository.event:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Event
+
+  app.repository.note:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Note
+
+  app.repository.profile:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Profile
+
+  app.repository.color:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\Color
+
+  app.repository.user:
+          class: Doctrine\ORM\EntityRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+              - AppBundle\Entity\User

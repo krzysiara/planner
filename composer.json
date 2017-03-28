@@ -20,6 +20,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "stfalcon/tinymce-bundle": "1.0",
         "symfony/assetic-bundle": "^2.8",
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/swiftmailer-bundle": "~2.3,>=2.3.10",
@@ -52,7 +53,7 @@
     "config": {
         "bin-dir": "bin",
         "platform": {
-            "php": "5.3.9"
+            "php": "5.6"
         },
         "sort-packages": true
     },

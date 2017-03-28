@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<div class="pull-right">
+    <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
+    <input class="btn  btn-accept" type="submit" value="{{ submitValue |trans }}" />
+</div>
+{{ form_end(form) }}
+
+{{ tinymce_init() }}

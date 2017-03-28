@@ -83,7 +83,7 @@ class Event
     private $color;
 
     /**
-     * @ORM\OneToMany(targetEntity="Note", mappedBy="contact")
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="event")
      */
     private $notes;
 

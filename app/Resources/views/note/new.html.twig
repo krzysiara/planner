@@ -2,18 +2,5 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block pageHeader %}New note{% endblock %}
 {% block body %}
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div class="pull-right">
-            <a  href="{{ path('contact_index') }}" class="btn btn-default">Back</a>
-            <input  class="btn  btn-accept" type="submit" value="Create" />
-        </div>
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('note_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    {% include 'includes/_base_form.html.twig' with {"form": form, "submitValue": "Create"} %}
 {% endblock %}

@@ -17,7 +17,9 @@ class NoteType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', [
+                'attr'=>['class'=>'tinymce']
+            ])
             ->add('type', 'hidden', ['data' => $options['note_type']] )
             ->add('color', 'entity', [
                 'class' => 'AppBundle:Color',

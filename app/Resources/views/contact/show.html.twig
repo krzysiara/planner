@@ -4,12 +4,11 @@
 {% block pageActions %}
 
     <a class="btn btn-default" href="{{ path('contact_index') }}">Back to the list</a>
+    <a class="btn btn-default" href="{{ path('note_add_to_contact' , {'contact': contact.id}) }}"><span class="glyphicon glyphicon-list-alt"></span> Add note</a>
     <a class="btn btn-default" href="{{ path('contact_edit', { 'id': contact.id }) }}">Edit</a>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
        Delete
     </button>
-
-
 {% endblock %}
 {% block body %}
     <h1>Contact</h1>

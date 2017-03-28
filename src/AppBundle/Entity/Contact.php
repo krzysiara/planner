@@ -75,6 +75,12 @@ class Contact
     private $notes;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Color", inversedBy="contacts")
+     * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
+     */
+    private $color;
+
+    /**
      * Many Contacts have Many Events.
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="participants")
      * @ORM\JoinTable(name="events_participants")
@@ -322,5 +328,28 @@ class Contact
      */
     public function getFullName(){
         return $this->getName()." ".$this->getSurname();
+    }
+
+    /**
+     * Set color
+     *
+     * @param \AppBundle\Entity\Color $color
+     * @return Contact
+     */
+    public function setColor(\AppBundle\Entity\Color $color = null)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return \AppBundle\Entity\Color 
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

@@ -17,7 +17,9 @@ class LocationType extends AbstractType
             ->add('name', 'text')
             ->add('lat', 'number')
             ->add('lng', 'number')
-            ->add('description', 'textarea');
+            ->add('description', 'textarea', [
+                'attr'=>['class'=>'tinymce']
+            ]);
     }
     
     /**

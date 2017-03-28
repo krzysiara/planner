@@ -1,49 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block pageHeader %}Notes{% endblock %}
 {% block body %}
-    {% set counter  =  1 %}
-    {% for note in notes %}
-        {% if counter == 1 %}
-            <div class="row">
-        {% endif %}
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading"
-                         {% if note.color %}style="background-color: {{ note.color.color }}" {% endif %}>
-                        {{ note.title }}
-                        {% if note.type %}
-                            {% if note.type == 1 %}
-                                <a class="pull-right" href="{{ path('contact_show', { 'id': note.contact.id }) }}">Contact <span class="glyphicon glyphicon-user"  aria-hidden="true"> </span></a>
-                            {% elseif note.type == 2 %}
-                                <a class="pull-right" href="{{ path('event_show', { 'id': note.event.id }) }}">Event <span class="glyphicon glyphicon-calendar"  aria-hidden="true"> </span></a>
-                            {% elseif note.type == 3 %}
-                                <a  class="pull-right" href="#">Location <span class="glyphicon glyphicon-map-marker"  aria-hidden="true"> </span></a>
-                                {% else %}
-
-                            {% endif %}
-                        {% endif %}
-                    </div>
-
-                    <div class="panel-body">
-                        {{ note.description |raw }}
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <a href="{{ path('note_show', { 'id': note.id }) }}" class="btn btn-default" role="button">Show</a>
-                            <a href="{{ path('note_edit', { 'id': note.id }) }}" class="btn btn-default" role="button">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        {% if counter == 3 %}
-            </div>
-            {% set counter = 1  %}
-            {% else %}
-                {% set counter = counter + 1  %}
-        {% endif %}
-    {% endfor %}
-
+    {% include 'includes/_notes_group.html.twig' with {"notes":notes} only %}
 {% endblock %}
