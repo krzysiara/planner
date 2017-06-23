@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Note
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +20,7 @@ class Note
     const NUM_ITEMS = 9;
 
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +30,7 @@ class Note
     private $id;
 
     /**
+     * title
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -34,6 +38,7 @@ class Note
     private $title;
 
     /**
+     * desc
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
@@ -41,6 +46,7 @@ class Note
     private $description;
 
     /**
+     * type
      * @var int
      *
      * @ORM\Column(name="type", type="integer")
@@ -48,30 +54,35 @@ class Note
     private $type;
 
     /**
+     * color
      * @ORM\ManyToOne(targetEntity="Color", inversedBy="notes")
      * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
      */
     private $color;
 
     /**
+     * event
      * @ORM\ManyToOne(targetEntity="Event", inversedBy="notes")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", nullable=true)
      */
     private $event;
 
     /**
+     * location
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="notes")
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true)
      */
     private $location;
 
     /**
+     * contact
      * @ORM\ManyToOne(targetEntity="Contact", inversedBy="notes")
      * @ORM\JoinColumn(name="contact_id", referencedColumnName="id", nullable=true)
      */
     private $contact;
 
     /**
+     * profile
      * @ORM\ManyToOne(targetEntity="Profile", inversedBy="notes")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
@@ -280,6 +291,10 @@ class Note
         return $this->contact;
     }
 
+    /**
+     * getColorName
+     * @return string
+     */
     public function getColorName()
     {
         return $this->color ? $this->getColor()->getName() : "-";

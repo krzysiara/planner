@@ -1,14 +1,7 @@
 <?php
-
-/*
- * This file is part of the FOSUserBundle package.
- *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * RegistrationController
  */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Profile;
@@ -23,8 +16,16 @@ use FOS\UserBundle\Model\UserInterface;
 
 use FOS\UserBundle\Controller\RegistrationController as FosController;
 
+/**
+ * Class RegistrationController
+ * @package AppBundle\Controller
+ */
 class RegistrationController extends FosController
 {
+    /**
+     * register
+     * @return RedirectResponse
+     */
     public function registerAction()
     {
         $form = $this->container->get('fos_user.registration.form');
@@ -73,6 +74,7 @@ class RegistrationController extends FosController
 
     /**
      * Tell the user to check his email provider
+     * @return Response
      */
     public function checkEmailAction()
     {
@@ -91,6 +93,8 @@ class RegistrationController extends FosController
 
     /**
      * Receive the confirmation token from user email provider, login the user
+     * @param token $token
+     * @return RedirectResponse
      */
     public function confirmAction($token)
     {
@@ -113,6 +117,7 @@ class RegistrationController extends FosController
 
     /**
      * Tell the user his account is now confirmed
+     * @return  Response
      */
     public function confirmedAction()
     {
@@ -147,6 +152,7 @@ class RegistrationController extends FosController
     }
 
     /**
+     * setFlash
      * @param string $action
      * @param string $value
      */
@@ -155,6 +161,10 @@ class RegistrationController extends FosController
         $this->container->get('session')->getFlashBag()->set($action, $value);
     }
 
+    /**
+     * getEngine
+     * @return mixed
+     */
     protected function getEngine()
     {
         return $this->container->getParameter('fos_user.template.engine');

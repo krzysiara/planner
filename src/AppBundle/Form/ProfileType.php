@@ -1,4 +1,8 @@
 <?php
+/**
+ * ProfileType
+ * @package AppBundle\Form
+ */
 
 namespace AppBundle\Form;
 
@@ -8,19 +12,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ProfileType
+ * @package AppBundle\Form
+ */
 class ProfileType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * buil form
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', 'text', [
-                'attr'=>['class'=>'form-control']
+                'attr' => ['class' => 'form-control', ],
             ])
             ->add('surname', 'text', [
-                'attr'=>['class'=>'form-control']
+                'attr' => ['class' => 'form-control', ],
             ])
             ->add('birthday', 'birthday', [
                 'widget' => 'single_text',
@@ -30,9 +40,10 @@ class ProfileType extends AbstractType
             ])
            ;
     }
-    
+
     /**
-     * {@inheritdoc}
+     * configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -44,7 +55,8 @@ class ProfileType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * get block prefix
+     * @return string
      */
     public function getBlockPrefix()
     {

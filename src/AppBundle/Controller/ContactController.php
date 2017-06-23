@@ -1,4 +1,7 @@
 <?php
+/**
+ * Contact controller.
+ */
 
 namespace AppBundle\Controller;
 
@@ -28,6 +31,8 @@ class ContactController extends BaseController
      *     name="contact_index_paginated",
      * )
      * @Method("GET")
+     * @param int $page Page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page)
     {
@@ -53,7 +58,7 @@ class ContactController extends BaseController
         $contact = new Contact();
         $ownerProfile = $this->getUserProfile();
         $contact->setProfile($ownerProfile);
-        $form = $this->createForm('AppBundle\Form\ContactType', $contact, ['owner_profile'=>$ownerProfile]);
+        $form = $this->createForm('AppBundle\Form\ContactType', $contact, ['owner_profile' => $ownerProfile, ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,6 +67,7 @@ class ContactController extends BaseController
             $em->flush();
 
             $this->addFlash('success', 'form.contact_new.success');
+
             return $this->redirectToRoute('contact_show', array('id' => $contact->getId()));
         }
 
@@ -109,6 +115,7 @@ class ContactController extends BaseController
             $em->persist($contact);
             $em->flush();
             $this->addFlash('success', 'form.contact_edit.success');
+
             return $this->redirectToRoute('contact_edit', array('id' => $contact->getId()));
         }
 

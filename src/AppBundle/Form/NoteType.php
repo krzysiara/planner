@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class NoteType
+ */
 
 namespace AppBundle\Form;
 
@@ -8,34 +11,40 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class NoteType
+ * @package AppBundle\Form
+ */
 class NoteType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea', [
-                'attr'=>['class'=>'tinymce']
+                'attr' => ['class' => 'tinymce', ],
             ])
             ->add('type', 'hidden', ['data' => $options['note_type']])
             ->add('color', 'entity', [
                 'class' => 'AppBundle:Color',
                 'choice_label' => 'name',
                 'multiple' => false,
-                'required'=>false
+                'required' => false,
             ]);
 
         if ($options['chose_parent_entity']) {
             $ownerProfile = $options['owner'];
             if ($options['note_type'] == Note::EVENT_TYPE) {
-                $builder ->add('event', 'entity', [
+                $builder->add('event', 'entity', [
                     'class' => 'AppBundle:Event',
                     'choice_label' => 'title',
                     'multiple' => false,
-                    'required'=>true,
+                    'required' => true,
                     'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('e')
                             ->where('e.profile = :owner')
@@ -47,7 +56,7 @@ class NoteType extends AbstractType
                     'class' => 'AppBundle:Location',
                     'choice_label' => 'name',
                     'multiple' => false,
-                    'required'=>true,
+                    'required' => true,
                     'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('l')
                             ->where('l.profile = :owner')
@@ -59,7 +68,7 @@ class NoteType extends AbstractType
                     'class' => 'AppBundle:Contact',
                     'choice_label' => 'fullName',
                     'multiple' => false,
-                    'required'=>true,
+                    'required' => true,
                     'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('l')
                             ->where('l.profile = :owner')
@@ -69,9 +78,10 @@ class NoteType extends AbstractType
             }
         }
     }
-    
+
     /**
-     * {@inheritdoc}
+     * configureOptions
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -79,12 +89,13 @@ class NoteType extends AbstractType
             'data_class' => 'AppBundle\Entity\Note',
             'note_type' => Note::EVENT_TYPE,
             'owner' => null,
-            'chose_parent_entity' => true
+            'chose_parent_entity' => true,
         ));
     }
 
     /**
-     * {@inheritdoc}
+     * getBlockPrefix
+     * @return string
      */
     public function getBlockPrefix()
     {

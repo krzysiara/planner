@@ -1,4 +1,7 @@
 <?php
+/**
+ * Settings
+ */
 
 namespace AppBundle\Entity;
 
@@ -6,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Settings
+ * Settings class
  *
  * @ORM\Table(name="settings")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SettingsRepository")
@@ -14,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Settings
 {
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -31,6 +35,7 @@ class Settings
     private $user;
 
     /**
+     * sendNotifications
      * @var boolean
      * @ORM\Column(name="send_notifications", type="boolean")
      */

@@ -1,12 +1,15 @@
 <?php
-
+/**
+ * EventRepository
+ *
+ */
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Profile;
 use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Proxies\__CG__\AppBundle\Entity\Profile;
 
 /**
  * EventRepository
@@ -14,6 +17,12 @@ use Proxies\__CG__\AppBundle\Entity\Profile;
  */
 class EventRepository extends EntityRepository
 {
+    /**
+     * findTodayEvents
+     * @param Profile   $profile
+     * @param \DateTime $date
+     * @return array
+     */
     public function findTodayEvents($profile, $date)
     {
         $query = $this->createQueryBuilder('e');
@@ -24,12 +33,21 @@ class EventRepository extends EntityRepository
             ->orWhere('e.startDate <= :date AND e.endDate >= :date AND e.profile = :profile')
 
             ->setParameters([
-            'profile'=>$profile, 'date'=>$date])
+                'profile' => $profile,
+                'date' => $date,
+            ])
             ->getQuery();
 
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * findMonthEvents
+     * @param Profile $profile
+     * @param int     $month
+     * @param int     $year
+     * @return array
+     */
     public function findMonthEvents($profile, $month, $year)
     {
         $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -40,10 +58,18 @@ class EventRepository extends EntityRepository
             $dayEvents[$days] = $this->findTodayEvents($profile, $date);
             $days --;
         }
-         return $dayEvents;
+
+        return $dayEvents;
     }
 
 
+    /**
+     * findBetweenDates
+     * @param Profile   $profile
+     * @param \DateTime $from
+     * @param \DateTime $to
+     * @return array
+     */
     public function findBetweenDates($profile, $from, $to)
     {
         $query = $this->createQueryBuilder('e');
@@ -52,9 +78,13 @@ class EventRepository extends EntityRepository
             ->where('e.startDate <= :startDate AND e.endDate >= :startDate AND e.profile = :profile')
             ->orWhere('e.startDate <= :endDate AND e.endDate >= :endDate AND e.profile = :profile')
             ->orWhere('e.startDate >= :startDate AND e.endDate <= :endDate AND e.profile = :profile')
-
-            ->setParameters([
-            'profile'=>$profile, 'startDate'=>$from, 'endDate'=>$to])
+            ->setParameters(
+                [
+                    'profile' => $profile,
+                    'startDate' => $from,
+                    'endDate' => $to,
+                ]
+            )
             ->getQuery();
 
         return $query->getQuery()->getResult();
@@ -63,11 +93,11 @@ class EventRepository extends EntityRepository
     /**
      * Gets all records paginated.
      *
-     * @param int             $page Page number
-     * @param $profile Profile
+     * @param Profile $profile Profile
+     * @param int     $page    Page number
      * @return \Pagerfanta\Pagerfanta Result
      */
-    public function findAllPaginated($page = 1, $profile)
+    public function findAllPaginated($profile, $page = 1)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryByUser($profile), false));
         $paginator->setMaxPerPage(Event::NUM_ITEMS);
@@ -79,7 +109,7 @@ class EventRepository extends EntityRepository
     /**
      * Query all entities.
      *
-     *  @param $profile Profile
+     * @param $profile Profile
      * @return \Doctrine\ORM\QueryBuilder
      */
     protected function queryByUser($profile)

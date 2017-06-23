@@ -1,26 +1,33 @@
 <?php
+/**
+ * Class SettingsType
+ */
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Note;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class SettingsType
+ * @package AppBundle\Form
+ */
 class SettingsType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('sendNotifications');
+        $builder->add('sendNotifications');
     }
-    
+
     /**
-     * {@inheritdoc}
+     * configureOptions
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -30,7 +37,8 @@ class SettingsType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * getBlockPrefix
+     * @return string
      */
     public function getBlockPrefix()
     {

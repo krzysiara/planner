@@ -1,4 +1,7 @@
 <?php
+/**
+ * Settings controller.
+ */
 
 namespace AppBundle\Controller;
 
@@ -25,6 +28,7 @@ class SettingsController extends BaseController
     public function showAction()
     {
         $settings = $this->getUser()->getSettings();
+
         return $this->render('settings/show.html.twig', array(
             'settings' => $settings,
         ));
@@ -49,6 +53,7 @@ class SettingsController extends BaseController
             $em->persist($settings);
             $em->flush();
             $this->addFlash('success', 'form.settings_edit.success');
+
             return $this->redirectToRoute('settings_edit', array('id' => $settings->getId()));
         }
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * LocationRepository
+ */
 
 namespace AppBundle\Repository;
 
@@ -10,7 +13,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
- * LocationRepository
+ * LocationRepository class
  *
  */
 class LocationRepository extends EntityRepository
@@ -18,11 +21,11 @@ class LocationRepository extends EntityRepository
     /**
      * Gets all records paginated.
      *
-     * @param int             $page Page number
-     * @param $profile Profile
+     * @param Profile $profile Profile
+     * @param int     $page    Page number
      * @return \Pagerfanta\Pagerfanta Result
      */
-    public function findAllPaginated($page = 1, $profile)
+    public function findAllPaginated($profile, $page = 1)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryByUser($profile), false));
         $paginator->setMaxPerPage(Location::NUM_ITEMS);
@@ -34,7 +37,7 @@ class LocationRepository extends EntityRepository
     /**
      * Query all entities.
      *
-     *  @param $profile Profile
+     * @param $profile Profile
      * @return \Doctrine\ORM\QueryBuilder
      */
     protected function queryByUser($profile)

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * ProfileRepository
+ */
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Profile;
@@ -7,12 +9,12 @@ use Doctrine\ORM\EntityRepository;
 
 /**
  * ProfileRepository
- *
  */
 class ProfileRepository extends EntityRepository
 {
     /**
-     * @param $profile Profile
+     * Save
+     * @param Profile $profile
      */
     public function save($profile)
     {

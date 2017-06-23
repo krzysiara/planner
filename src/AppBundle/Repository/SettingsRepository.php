@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * SettingsRepository
+ *
+ */
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Settings;
@@ -12,7 +15,8 @@ use Doctrine\ORM\EntityRepository;
 class SettingsRepository extends EntityRepository
 {
     /**
-     * @param $settings Settings
+     * save
+     * @param Settings $settings
      */
     public function save($settings)
     {

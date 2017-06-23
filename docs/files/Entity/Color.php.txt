@@ -1,0 +1,242 @@
+<?php
+/**
+ * Color
+ */
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Color
+ *
+ * @ORM\Table(name="color")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ColorRepository")
+ */
+class Color
+{
+    /**
+     * id
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * name
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * color
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255, unique=true)
+     */
+    private $color;
+
+    /**
+     * events
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="color")
+     */
+    private $events;
+
+    /**
+     * contacts
+     * @ORM\OneToMany(targetEntity="Contact", mappedBy="color")
+     */
+    private $contacts;
+
+    /**
+     * notes
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="color")
+     */
+    private $notes;
+
+    /**
+     * Color constructor.
+     */
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
+        $this->notes = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Color
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Add events
+     *
+     *
+     * @param Event $event
+     * @return Color
+     */
+    public function addEvent($event)
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param Event $event
+     * @internal param Event $events
+     */
+    public function removeEvent(Event $event)
+    {
+        $this->events->removeElement($event);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Add contacts
+     *
+     * @param Contact $contact
+     * @return Color
+     */
+    public function addContact(Contact $contact)
+    {
+        $this->contacts[] = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Remove contact
+     * @param Contact $contact
+     */
+    public function removeContact(Contact $contact)
+    {
+        $this->contacts->removeElement($contact);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * setData
+     * @param string $name
+     * @param string $colorCode
+     * @return $this
+     */
+    public function setData($name, $colorCode)
+    {
+        $this->setName($name);
+        $this->setColor($colorCode);
+
+        return $this;
+    }
+
+    /**
+     * Add notes
+     *
+     * @param Note $notes
+     * @return Color
+     */
+    public function addNote(Note $notes)
+    {
+        $this->notes[] = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Remove notes
+     *
+     * @param Note $note
+     */
+    public function removeNote(Note $note)
+    {
+        $this->notes->removeElement($note);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+}
+

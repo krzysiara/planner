@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Color
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Color
 {
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +26,7 @@ class Color
     private $id;
 
     /**
+     * name
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
@@ -30,6 +34,7 @@ class Color
     private $name;
 
     /**
+     * color
      * @var string
      *
      * @ORM\Column(name="color", type="string", length=255, unique=true)
@@ -37,20 +42,26 @@ class Color
     private $color;
 
     /**
+     * events
      * @ORM\OneToMany(targetEntity="Event", mappedBy="color")
      */
     private $events;
 
     /**
+     * contacts
      * @ORM\OneToMany(targetEntity="Contact", mappedBy="color")
      */
     private $contacts;
 
     /**
+     * notes
      * @ORM\OneToMany(targetEntity="Note", mappedBy="color")
      */
     private $notes;
 
+    /**
+     * Color constructor.
+     */
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -118,7 +129,7 @@ class Color
      * Add events
      *
      *
-     * @param $event
+     * @param Event $event
      * @return Color
      */
     public function addEvent($event)
@@ -182,6 +193,7 @@ class Color
     }
 
     /**
+     * setData
      * @param string $name
      * @param string $colorCode
      * @return $this
@@ -190,6 +202,7 @@ class Color
     {
         $this->setName($name);
         $this->setColor($colorCode);
+
         return $this;
     }
 

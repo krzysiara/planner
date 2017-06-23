@@ -461,8 +461,80 @@
         <source>message.form_error</source>
         <target>Błąd!</target>
       </trans-unit>
+      <trans-unit id="flash.form.contact_new.success">
+        <source>form.contact_new.success</source>
+        <target>Dodano nowy kontakt!</target>
+      </trans-unit>
 
+      <trans-unit id="flash.form.contact_edit.success">
+        <source>form.contact_edit.success</source>
+        <target>Zaktualizowano kontakt!</target>
+      </trans-unit>
 
+      <trans-unit id="flash.form.contact_delete.success">
+        <source>form.contact_delete.success</source>
+        <target>Usunięto kontakt!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.event_delete.success">
+        <source>form.event_delete.success</source>
+        <target>Usunięto wydarzenie!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.event_edit.success">
+        <source>form.event_edit.success</source>
+        <target>Zmieniono wydarzenie!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.event_new.success">
+        <source>form.event_new.success</source>
+        <target>Dodano wydarzenie!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.location_delete.success">
+        <source>form.location_delete.success</source>
+        <target>Usunięto miejsce!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.location_edit.success">
+        <source>form.location_edit.success</source>
+        <target>Zmieniono miejsce!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.location_new.success">
+        <source>form.location_new.success</source>
+        <target>Dodano miejsce!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.settings_delete.success">
+        <source>form.settings_delete.success</source>
+        <target>Usunięto ustawienia!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.settings_edit.success">
+        <source>form.settings_edit.success</source>
+        <target>Zmieniono ustawienia!</target>
+      </trans-unit>
+
+      <trans-unit id="flash.form.settings_new.success">
+        <source>form.settings_new.success</source>
+        <target>Dodano ustawienia!</target>
+      </trans-unit>
+
+      <trans-unit id="User disabled">
+        <source>User disabled</source>
+        <target>Zablokowano użytkownika!</target>
+      </trans-unit>
+
+      <trans-unit id="User enabled">
+        <source>User enabled</source>
+        <target>Odblokowano użytkownika!</target>
+      </trans-unit>
+
+      <trans-unit id="form.profile_edit.success">
+        <source>form.profile_edit.success</source>
+        <target>Zmieniono profil!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

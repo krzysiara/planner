@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ * ICal Service
+ *
+ */
 
 namespace AppBundle\Service;
 
@@ -15,11 +20,15 @@ class ICalService
 {
 
     /**
+     * Event repository
      * @var EventRepository
      */
     private $eventRepository;
 
-    /** @var Factory $icalFactory */
+    /**
+     * ical Factory
+     * @var Factory $icalFactory
+     * */
     private $icalFactory;
 
     /**
@@ -36,6 +45,7 @@ class ICalService
 
     /**
      * create Calendar
+     *
      * @param Profile $profile
      * @return Calendar
      */
@@ -49,6 +59,8 @@ class ICalService
     }
 
     /**
+     * Add Events
+     *
      * @param $calendar Calendar
      * @param $profile Profile
      * @return Calendar
@@ -65,6 +77,8 @@ class ICalService
     }
 
     /**
+     * Create Event
+     *
      * @param $event Event
      * @return \Jsvrcek\ICS\Model\CalendarEvent
      */

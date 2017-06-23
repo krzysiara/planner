@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Event Controller
+ */
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Event;
@@ -30,11 +32,13 @@ class EventController extends BaseController
      *     name="event_index_paginated",
      * )
      * @Method("GET")
+     * @param int $page Page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page)
     {
         $repository = $this->get("app.repository.event");
-        $events = $repository->findAllPaginated($page, $this->getUserProfile());
+        $events = $repository->findAllPaginated($this->getUserProfile(), $page);
 
         return $this->render('event/index.html.twig', array(
             'events' => $events,
@@ -44,10 +48,11 @@ class EventController extends BaseController
     /**
      * Generate calendar event ICAL for welpAction
      * @Route("/ical", name="app_ical")
+     * @return CalendarResponse
      */
     public function icalAction()
     {
-        $calendar= $this->get('app.service.iCalService')->createICal($this->getUserProfile());
+        $calendar = $this->get('app.service.iCalService')->createICal($this->getUserProfile());
 
         $headers = array();
         $calendarResponse = new CalendarResponse($calendar, 200, $headers);
@@ -62,6 +67,8 @@ class EventController extends BaseController
      * @Method("GET")
      *
      * parse date: 10%20september%202000 or now
+     * @param \DateTime $date Date
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dayIndexAction($date)
     {
@@ -83,6 +90,9 @@ class EventController extends BaseController
      * @Method("GET")
      *
      * parse date: 10%20september%202000 or now
+     * @param int $month Month
+     * @param int $year  Year
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function monthIndexAction($month, $year)
     {
@@ -116,6 +126,7 @@ class EventController extends BaseController
             $em->persist($event);
             $em->flush();
             $this->addFlash('success', 'form.event_new.success');
+
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
@@ -162,6 +173,7 @@ class EventController extends BaseController
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'form.event_edit.success');
+
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }
 

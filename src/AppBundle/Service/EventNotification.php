@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * Event Notification Service
  */
 
@@ -10,27 +9,48 @@ use AppBundle\Entity\User;
 use AppBundle\Repository\EventRepository;
 use AppBundle\Repository\UserRepository;
 
+/**
+ * Event Notification Service class
+ */
 class EventNotification
 {
+    /** usr Repository
+     * @var UserRepository
+     */
     private $userRepository;
+
+    /**
+     * eventRepository
+     * @var EventRepository
+     */
     private $eventsRepository;
+
+    /**
+     * Mailer
+     * @var Mailer
+     */
     private $mailer;
+
+    /**
+     * Twig
+     * @var Twig
+     */
     private $twig;
 
 
     /**
      * EventNotification constructor.
-     * @param $twig
-     * @param $mailer
+     * @param Twig            $twig
+     * @param Mailer          $mailer
      * @param UserRepository  $userRepository
      * @param EventRepository $eventRepository
      */
     public function __construct($twig, $mailer, UserRepository $userRepository, EventRepository $eventRepository)
     {
-        $this->userRepository=$userRepository;
-        $this->eventsRepository=$eventRepository;
-        $this->twig=$twig;
-        $this->mailer=$mailer;
+        $this->userRepository = $userRepository;
+        $this->eventsRepository = $eventRepository;
+        $this->twig = $twig;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -45,6 +65,7 @@ class EventNotification
     }
 
     /**
+     * sendUserNotification
      * @param $user User
      */
     private function sendUserNotification($user)
@@ -58,7 +79,8 @@ class EventNotification
     }
 
     /**
-     * @param $user User
+     * getTodayEvents
+     * @param User $user User
      * @return array
      */
     private function getTodayEvents($user)
@@ -67,6 +89,7 @@ class EventNotification
     }
 
     /**
+     * getUsers
      * @return array
      */
     private function getUsers()
@@ -75,6 +98,7 @@ class EventNotification
     }
 
     /**
+     * createNotificationMessage
      * @param $events
      * @param $user User
      * @return \Swift_Message
@@ -91,8 +115,8 @@ class EventNotification
                     array('events' => $events)
                 ),
                 'text/html'
-            )
-        ;
+            );
+
         return $message;
     }
 }

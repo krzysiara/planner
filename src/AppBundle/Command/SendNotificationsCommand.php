@@ -9,6 +9,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
+/**
+ * Class SendNotificationsCommand
+ * @package AppBundle\Command
+ */
 class SendNotificationsCommand extends ContainerAwareCommand
 {
 
@@ -24,6 +28,7 @@ class SendNotificationsCommand extends ContainerAwareCommand
 
 
     /**
+     * execute command
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void

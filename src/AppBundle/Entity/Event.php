@@ -1,4 +1,7 @@
 <?php
+/**
+ * Event
+ */
 
 namespace AppBundle\Entity;
 
@@ -15,6 +18,7 @@ class Event
 {
     const NUM_ITEMS = 10;
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -24,18 +28,21 @@ class Event
     private $id;
 
     /**
+     * profile
      * @ORM\ManyToOne(targetEntity="Profile", inversedBy="events")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     private $profile;
 
     /**
+     * location
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="events")
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true)
      */
     private $location;
 
     /**
+     * startDate
      * @var \DateTime
      *
      * @ORM\Column(name="startDate", type="date")
@@ -43,6 +50,7 @@ class Event
     private $startDate;
 
     /**
+     * startTime
      * @var \DateTime
      *
      * @ORM\Column(name="startTime", type="time", nullable=true)
@@ -50,6 +58,7 @@ class Event
     private $startTime;
 
     /**
+     * endDate
      * @var \DateTime
      *
      * @ORM\Column(name="endDate", type="date")
@@ -57,6 +66,7 @@ class Event
     private $endDate;
 
     /**
+     * endTime
      * @var \DateTime
      *
      * @ORM\Column(name="endTime", type="time", nullable=true)
@@ -64,6 +74,7 @@ class Event
     private $endTime;
 
     /**
+     * title
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -71,6 +82,7 @@ class Event
     private $title;
 
     /**
+     * description
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
@@ -78,12 +90,14 @@ class Event
     private $description;
 
     /**
+     * color
      * @ORM\ManyToOne(targetEntity="Color", inversedBy="events")
      * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
      */
     private $color;
 
     /**
+     * notes
      * @ORM\OneToMany(targetEntity="Note", mappedBy="event")
      */
     private $notes;
@@ -94,7 +108,9 @@ class Event
      */
     private $participants;
 
-
+    /**
+     * Event constructor.
+     */
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -352,6 +368,10 @@ class Event
         return $this->notes;
     }
 
+    /**
+     * addParticipant
+     * @param Contact $participant
+     */
     public function addParticipant(Contact $participant)
     {
         $participant->addEvent($this); // synchronously updating inverse side
@@ -361,7 +381,8 @@ class Event
     /**
      * Remove participants
      *
-     * @param \AppBundle\Entity\Contact $participants
+     * @param Contact $participant
+     * @internal param Contact $participants
      */
     public function removeParticipant(Contact $participant)
     {

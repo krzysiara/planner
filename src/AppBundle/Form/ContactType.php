@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * ContactType
+ * @package AppBundle\Form
+ */
 namespace AppBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,10 +10,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ContactType
+ * @package AppBundle\Form
+ */
 class ContactType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * build form
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,7 +39,7 @@ class ContactType extends AbstractType
                 'class' => 'AppBundle:Location',
                 'choice_label' => 'name',
                 'multiple' => false,
-                'required'=>false,
+                'required' => false,
                 'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                     return $er->createQueryBuilder('l')
                         ->where('l.profile = :owner')
@@ -39,9 +48,10 @@ class ContactType extends AbstractType
 
             ]);
     }
-    
+
     /**
-     * {@inheritdoc}
+     * configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -52,7 +62,8 @@ class ContactType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * get block prefix
+     * @return string
      */
     public function getBlockPrefix()
     {

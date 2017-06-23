@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Note controller.
+ */
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
@@ -32,11 +34,13 @@ class NoteController extends BaseController
      *     name="note_index_paginated",
      * )
      * @Method("GET")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        $notes = $em->getRepository('AppBundle:Note')->findAllPaginated($page, $this->getUserProfile());
+        $notes = $em->getRepository('AppBundle:Note')->findAllPaginated($this->getUserProfile(), $page);
 
         return $this->render('note/index.html.twig', array(
             'notes' => $notes,
@@ -62,8 +66,9 @@ class NoteController extends BaseController
             'chose_parent_entity' => false,
         ]);
 
-        $backRoute = $this->generateUrl('event_show', ['id'=>$event->getId()]);
+        $backRoute = $this->generateUrl('event_show', ['id' => $event->getId(), ]);
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
@@ -83,11 +88,12 @@ class NoteController extends BaseController
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::CONTACT_TYPE,
             'owner' => $this->getUserProfile(),
-            'chose_parent_entity' => false
+            'chose_parent_entity' => false,
         ]);
 
-        $backRoute = $this->generateUrl('contact_show', ['id'=>$contact->getId()]);
+        $backRoute = $this->generateUrl('contact_show', ['id' => $contact->getId()]);
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
@@ -107,11 +113,12 @@ class NoteController extends BaseController
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::LOCATION_TYPE,
             'owner' => $this->getUserProfile(),
-            'chose_parent_entity' => false
+            'chose_parent_entity' => false,
         ]);
 
-        $backRoute = $this->generateUrl('location_show', ['id'=>$location->getId()]);
+        $backRoute = $this->generateUrl('location_show', ['id' => $location->getId()]);
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
@@ -129,11 +136,12 @@ class NoteController extends BaseController
         $note->setType(Note::EVENT_TYPE);
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::EVENT_TYPE,
-            'owner' => $this->getUserProfile()
+            'owner' => $this->getUserProfile(),
         ]);
 
         $backRoute = $this->generateUrl('note_index');
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
@@ -156,6 +164,7 @@ class NoteController extends BaseController
 
         $backRoute = $this->generateUrl('note_index');
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
@@ -173,56 +182,15 @@ class NoteController extends BaseController
         $note->setType(Note::LOCATION_TYPE);
         $form = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => Note::LOCATION_TYPE,
-            'owner' => $this->getUserProfile()
+            'owner' => $this->getUserProfile(),
         ]);
 
         $backRoute = $this->generateUrl('note_index');
         $response = $this->newNote($note, $form, $request, $backRoute);
+
         return $response;
     }
 
-    /**
-     * @param Note $note
-     * @param Form $form
-     * @param Request $request
-     * @param $backRoute
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    private function newNote(Note $note, Form $form, Request $request, $backRoute)
-    {
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($note);
-            $em->flush();
-
-            return $this->redirectToRoute('note_show', array('id' => $note->getId()));
-        }
-
-        return $this->render('note/new.html.twig', array(
-            'note' => $note,
-            'form' => $form->createView(),
-            'backRoute' =>$backRoute
-        ));
-    }
-
-    /**
-     * Finds and displays a note entity.
-     *
-     * @Route("/{id}", name="note_show")
-     * @Method("GET")
-     * @param Note $note
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function showAction(Note $note)
-    {
-        $deleteForm = $this->createDeleteForm($note);
-
-        return $this->render('note/show.html.twig', array(
-            'note' => $note,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Displays a form to edit an existing note entity.
@@ -238,7 +206,7 @@ class NoteController extends BaseController
         $deleteForm = $this->createDeleteForm($note);
         $editForm = $this->createForm('AppBundle\Form\NoteType', $note, [
             'note_type' => $note->getType(),
-            'owner' => $this->getUserProfile()
+            'owner' => $this->getUserProfile(),
         ]);
         $editForm->handleRequest($request);
 
@@ -292,5 +260,32 @@ class NoteController extends BaseController
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    /**
+     * new Note
+     * @param Note $note
+     * @param Form $form
+     * @param Request $request
+     * @param $backRoute
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    private function newNote(Note $note, Form $form, Request $request, $backRoute)
+    {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
+
+            return $this->redirectToRoute('note_show', array('id' => $note->getId()));
+        }
+
+        return $this->render('note/new.html.twig', array(
+            'note' => $note,
+            'form' => $form->createView(),
+            'backRoute' => $backRoute,
+        ));
     }
 }

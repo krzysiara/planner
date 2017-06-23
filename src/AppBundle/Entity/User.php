@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -16,6 +18,7 @@ class User extends BaseUser
     const NUM_ITEMS = 10;
 
     /**
+     * Id
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -35,6 +38,9 @@ class User extends BaseUser
      */
     private $settings;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();

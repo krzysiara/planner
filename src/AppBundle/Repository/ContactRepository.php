@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Contact Repository
+ */
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Contact;
@@ -18,11 +20,11 @@ class ContactRepository extends EntityRepository
     /**
      * Gets all records paginated.
      *
-     * @param int             $page Page number
-     * @param $profile Profile
+     * @param Profile $profile Profile
+     * @param int     $page    Page number
      * @return \Pagerfanta\Pagerfanta Result
      */
-    public function findAllPaginated($page = 1, $profile)
+    public function findAllPaginated($profile, $page = 1)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryByUser($profile), false));
         $paginator->setMaxPerPage(Contact::NUM_ITEMS);
@@ -34,7 +36,7 @@ class ContactRepository extends EntityRepository
     /**
      * Query all entities.
      *
-     *  @param $profile Profile
+     * @param $profile Profile
      * @return \Doctrine\ORM\QueryBuilder
      */
     protected function queryByUser($profile)

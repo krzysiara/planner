@@ -1,4 +1,7 @@
 <?php
+/**
+ * BaseController
+ */
 
 namespace AppBundle\Controller;
 
@@ -9,10 +12,15 @@ use AppBundle\Entity\Profile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * Class BaseController
+ * @package AppBundle\Controller
+ */
 class BaseController extends Controller
 {
 
     /**
+     * getUserProfile
      * @return Profile
      */
     public function getUserProfile()
@@ -21,6 +29,7 @@ class BaseController extends Controller
     }
 
     /**
+     * checkAccessPermission
      * @param Contact | Location | Event $object
      * @return bool
      */
@@ -29,10 +38,11 @@ class BaseController extends Controller
         if ($this->isGranted('ROLE_SUPERADMIN')) {
             return true;
         } else {
-            if ($object->getProfile()!=$this->getUserProfile()) {
+            if ($object->getProfile() != $this->getUserProfile()) {
                 throw new AccessDeniedException();
             }
         }
+
         return true;
     }
 }

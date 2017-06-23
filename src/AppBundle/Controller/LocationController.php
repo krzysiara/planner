@@ -1,4 +1,7 @@
 <?php
+/**
+ * Location controller.
+ */
 
 namespace AppBundle\Controller;
 
@@ -18,7 +21,7 @@ class LocationController extends BaseController
      * Lists all location entities.
      *
      *
-     *@Route(
+     * @Route(
      *     "/",
      *     defaults={"page": 1},
      *     name="location_index",
@@ -29,12 +32,14 @@ class LocationController extends BaseController
      *     name="location_index_paginated",
      * )
      * @Method("GET")
+     * @param int $page Page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
+        $locations = $em->getRepository('AppBundle:Location')->findAllPaginated($this->getUserProfile(), $page);
 
-        $locations = $em->getRepository('AppBundle:Location')->findAllPaginated($page, $this->getUserProfile());
 
         return $this->render('location/index.html.twig', array(
             'locations' => $locations,
@@ -61,6 +66,7 @@ class LocationController extends BaseController
             $em->persist($location);
             $em->flush();
             $this->addFlash('success', 'form.location_new.success');
+
             return $this->redirectToRoute('location_show', array('id' => $location->getId()));
         }
 
@@ -108,6 +114,7 @@ class LocationController extends BaseController
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'form.location_edit.success');
+
             return $this->redirectToRoute('location_edit', array('id' => $location->getId()));
         }
 

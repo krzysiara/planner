@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Profile
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Profile
 {
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -31,6 +34,7 @@ class Profile
     private $user;
 
     /**
+     * birthdate
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date", nullable=true)
@@ -38,6 +42,7 @@ class Profile
     private $birthday;
 
     /**
+     * name
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -45,6 +50,7 @@ class Profile
     private $name;
 
     /**
+     * surname
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
@@ -52,26 +58,32 @@ class Profile
     private $surname;
 
     /**
+     * locations
      * @ORM\OneToMany(targetEntity="Location", mappedBy="profile")
      */
     private $locations;
 
     /**
+     * events
      * @ORM\OneToMany(targetEntity="Event", mappedBy="profile")
      */
     private $events;
 
     /**
+     * contacts
      * @ORM\OneToMany(targetEntity="Contact", mappedBy="profile")
      */
     private $contacts;
 
     /**
+     * notes
      * @ORM\OneToMany(targetEntity="Note", mappedBy="profile")
      */
     private $notes;
 
-
+    /**
+     * Profile constructor.
+     */
     public function __construct()
     {
         $this->locations = new ArrayCollection();
@@ -258,7 +270,6 @@ class Profile
     {
         return $this->contacts;
     }
-    
 
 
     /**

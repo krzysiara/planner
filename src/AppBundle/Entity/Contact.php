@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Contact
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,6 +17,7 @@ class Contact
 {
     const NUM_ITEMS = 10;
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -24,12 +27,14 @@ class Contact
     private $id;
 
     /**
+     * profile
      * @ORM\ManyToOne(targetEntity="Profile", inversedBy="contacts")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     private $profile;
 
     /**
+     * name
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -37,6 +42,7 @@ class Contact
     private $name;
 
     /**
+     * surname
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
@@ -44,6 +50,7 @@ class Contact
     private $surname;
 
     /**
+     * phone
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
@@ -51,6 +58,7 @@ class Contact
     private $phone;
 
     /**
+     * email
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -58,6 +66,7 @@ class Contact
     private $email;
 
     /**
+     * birthdate
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date", nullable=true)
@@ -65,29 +74,36 @@ class Contact
     private $birthday;
 
     /**
+     * address
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="contacts")
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true)
      */
     private $address;
 
     /**
+     * notes
      * @ORM\OneToMany(targetEntity="Note", mappedBy="contact")
      */
     private $notes;
 
     /**
+     * color
      * @ORM\ManyToOne(targetEntity="Color", inversedBy="contacts")
      * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
      */
     private $color;
 
     /**
+     *
      * Many Contacts have Many Events.
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="participants")
      * @ORM\JoinTable(name="events_participants")
      */
     private $events;
 
+    /**
+     * Contact constructor.
+     */
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -275,6 +291,10 @@ class Contact
         return $this->notes;
     }
 
+    /**
+     * addEvent
+     * @param Event $event
+     */
     public function addEvent(Event $event)
     {
         $this->events->add($event) ;
@@ -325,6 +345,7 @@ class Contact
     }
 
     /**
+     * getFullName
      * @return string
      */
     public function getFullName()

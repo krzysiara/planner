@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * UserRepository
+ */
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
@@ -8,13 +10,14 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
- * UserRepository
+ * UserRepository class
  *
  */
 class UserRepository extends EntityRepository
 {
     /**
-     * @param $user User
+     * save
+     * @param User $user
      */
     public function save($user)
     {
@@ -38,6 +41,7 @@ class UserRepository extends EntityRepository
     }
 
     /**
+     * findWithActiveReminderSettings
      * @return array
      */
     public function findWithActiveReminderSettings()
@@ -46,6 +50,7 @@ class UserRepository extends EntityRepository
             ->join('AppBundle:Settings', 's')
             ->where("s.sendNotifications =:true")
             ->setParameter('true', true);
+
         return $qb->getQuery()->getResult();
     }
 

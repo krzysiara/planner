@@ -1,4 +1,8 @@
 <?php
+/**
+ * ColorRepository
+ *
+ */
 
 namespace AppBundle\Repository;
 

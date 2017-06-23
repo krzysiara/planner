@@ -36,17 +36,18 @@ class LoadColorData extends AbstractFixture implements ContainerAwareInterface
     }
 
     /**
-     * {@inheritdoc}
+     * load
+     * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
         $data = [
-            'Red' => 'red',
-            'Green' => 'green',
-            'Yellow' => 'yellow',
-            'Blue' => 'blue',
-            'Grey' => 'grey',
-            'White' => 'white'
+            'Czerwony' => 'red',
+            'Zielony' => 'green',
+            'Żółty' => 'yellow',
+            'Niebieski' => 'blue',
+            'Szary' => 'grey',
+            'Biały' => 'white',
         ];
 
         foreach ($data as $name => $code) {

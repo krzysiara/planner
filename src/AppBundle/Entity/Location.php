@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Location entity
+ *
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,6 +21,7 @@ class Location
     const NUM_ITEMS = 10;
 
     /**
+     * id
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,12 +31,14 @@ class Location
     private $id;
 
     /**
+     * profile
      * @ORM\ManyToOne(targetEntity="Profile", inversedBy="locations")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     private $profile;
 
     /**
+     * name
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -40,6 +46,7 @@ class Location
     private $name;
 
     /**
+     * lat
      * @var float
      *
      * @ORM\Column(name="lat", type="float", nullable=true)
@@ -47,6 +54,7 @@ class Location
     private $lat;
 
     /**
+     * lng
      * @var float
      *
      * @ORM\Column(name="lng", type="float", nullable=true)
@@ -54,6 +62,7 @@ class Location
     private $lng;
 
     /**
+     * description
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
@@ -61,16 +70,19 @@ class Location
     private $description;
 
     /**
+     * events
      * @ORM\OneToMany(targetEntity="Event", mappedBy="location")
      */
     private $events;
 
     /**
+     * notes
      * @ORM\OneToMany(targetEntity="Note", mappedBy="location")
      */
     private $notes;
 
     /**
+     * contacts
      * @ORM\OneToMany(targetEntity="Contact", mappedBy="address")
      */
     private $contacts;
@@ -310,22 +322,26 @@ class Location
     }
 
     /**
-     * @param $latlng
+     * set LangLng
+     * @param LatLng $latlng
      * @return $this
      */
     public function setLatLng($latlng)
     {
         $this->setLat($latlng['lat']);
         $this->setLng($latlng['lng']);
+
         return $this;
     }
 
     /**
+     * get LatLng
      * @Assert\NotBlank()
      * @OhAssert\LatLng()
+     * @return array
      */
     public function getLatLng()
     {
-        return array('lat'=>$this->getLat(),'lng'=>$this->getLng());
+        return array('lat' => $this->getLat(), 'lng' => $this->getLng());
     }
 }
