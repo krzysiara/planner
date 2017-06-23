@@ -38,7 +38,7 @@ class ContactController extends BaseController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contacts = $em->getRepository('AppBundle:Contact')->findAllPaginated($page, $this->getUserProfile());
+        $contacts = $em->getRepository('AppBundle:Contact')->findAllPaginated($this->getUserProfile(), $page);
 
         return $this->render('contact/index.html.twig', array(
             'contacts' => $contacts,

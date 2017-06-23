@@ -47,6 +47,7 @@ class NoteController extends BaseController
         ));
     }
 
+
     /**
      * Add new note to event
      *
@@ -244,6 +245,24 @@ class NoteController extends BaseController
         }
 
         return $this->redirectToRoute('note_index');
+    }
+
+    /**
+     * Finds and displays a note entity.
+     *
+     * @Route("/{id}", name="note_show")
+     * @Method("GET")
+     * @param Note $note
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showAction(Note $note)
+    {
+        $deleteForm = $this->createDeleteForm($note);
+
+        return $this->render('note/show.html.twig', array(
+            'note' => $note,
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**
