@@ -5,6 +5,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Note
@@ -34,6 +35,8 @@ class Note
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -42,6 +45,7 @@ class Note
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     *
      */
     private $description;
 
@@ -50,6 +54,7 @@ class Note
      * @var int
      *
      * @ORM\Column(name="type", type="integer")
+     * @Assert\NotNull()
      */
     private $type;
 

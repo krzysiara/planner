@@ -7,6 +7,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Event
@@ -46,6 +48,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="startDate", type="date")
+     * @Assert\NotNull()
      */
     private $startDate;
 
@@ -62,6 +65,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="endDate", type="date")
+     * @Assert\NotNull()
      */
     private $endDate;
 
@@ -78,6 +82,8 @@ class Event
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -86,6 +92,8 @@ class Event
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $description;
 
