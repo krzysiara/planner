@@ -1,0 +1,11 @@
+
+{% javascripts
+'bundles/app/js/addGmap.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<div id="map"></div>
+<script>
+    initMap({{ lat }}, {{ lng }})
+</script>

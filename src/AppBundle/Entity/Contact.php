@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Contact
 {
+    const NUM_ITEMS = 10;
     /**
      * @var int
      *
@@ -96,7 +97,7 @@ class Contact
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -119,7 +120,7 @@ class Contact
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -142,7 +143,7 @@ class Contact
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -165,7 +166,7 @@ class Contact
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -188,7 +189,7 @@ class Contact
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -211,7 +212,7 @@ class Contact
     /**
      * Get birthday
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthday()
     {
@@ -221,10 +222,10 @@ class Contact
     /**
      * Set profile
      *
-     * @param \AppBundle\Entity\Profile $profile
+     * @param Profile $profile
      * @return Contact
      */
-    public function setProfile(\AppBundle\Entity\Profile $profile = null)
+    public function setProfile(Profile $profile = null)
     {
         $this->profile = $profile;
 
@@ -244,10 +245,10 @@ class Contact
     /**
      * Add notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $notes
      * @return Contact
      */
-    public function addNote(\AppBundle\Entity\Note $notes)
+    public function addNote(Note $notes)
     {
         $this->notes[] = $notes;
 
@@ -257,9 +258,9 @@ class Contact
     /**
      * Remove notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $notes
      */
-    public function removeNote(\AppBundle\Entity\Note $notes)
+    public function removeNote(Note $notes)
     {
         $this->notes->removeElement($notes);
     }
@@ -267,7 +268,7 @@ class Contact
     /**
      * Get notes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotes()
     {
@@ -283,9 +284,9 @@ class Contact
     /**
      * Remove events
      *
-     * @param \AppBundle\Entity\Event $events
+     * @param Event $events
      */
-    public function removeEvent(\AppBundle\Entity\Event $events)
+    public function removeEvent(Event $events)
     {
         $this->events->removeElement($events);
     }
@@ -293,7 +294,7 @@ class Contact
     /**
      * Get events
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEvents()
     {
@@ -303,10 +304,10 @@ class Contact
     /**
      * Set address
      *
-     * @param \AppBundle\Entity\Location $address
+     * @param Location $address
      * @return Contact
      */
-    public function setAddress(\AppBundle\Entity\Location $address = null)
+    public function setAddress(Location $address = null)
     {
         $this->address = $address;
 
@@ -316,7 +317,7 @@ class Contact
     /**
      * Get address
      *
-     * @return \AppBundle\Entity\Location 
+     * @return \AppBundle\Entity\Location
      */
     public function getAddress()
     {
@@ -326,17 +327,18 @@ class Contact
     /**
      * @return string
      */
-    public function getFullName(){
+    public function getFullName()
+    {
         return $this->getName()." ".$this->getSurname();
     }
 
     /**
      * Set color
      *
-     * @param \AppBundle\Entity\Color $color
+     * @param Color $color
      * @return Contact
      */
-    public function setColor(\AppBundle\Entity\Color $color = null)
+    public function setColor(Color $color = null)
     {
         $this->color = $color;
 
@@ -346,7 +348,7 @@ class Contact
     /**
      * Get color
      *
-     * @return \AppBundle\Entity\Color 
+     * @return \AppBundle\Entity\Color
      */
     public function getColor()
     {

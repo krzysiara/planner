@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-{% block pageHeader %}Notes{% endblock %}
+{% block pageHeader %}{{"Notes"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_notes_group.html.twig' with {"notes":notes} only %}
+    <div class="row">
+        <div class=" navigation text-center">
+            {{ pagerfanta(notes, 'twitter_bootstrap3_translated', { routeName: ('note_index_paginated') }) }}
+        </div>
+    </div>
+
 {% endblock %}

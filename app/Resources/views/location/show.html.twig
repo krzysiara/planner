@@ -1,44 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Location</h1>
+{% block pageHeader %}{{ location.name }}{% endblock %}
 
-    <table>
+{% block pageActions %}
+    <a class="btn btn-default" href="{{ path('location_index') }}">{{ "Back to the list"|trans }}</a>
+    <a class="btn btn-default" href="{{ path('note_add_to_location' , {'location': location.id}) }}"><span class="glyphicon glyphicon-list-alt"></span> {{ "Add note" |trans }}</a>
+    <a class="btn btn-default" href="{{ path('location_edit', { 'id': location.id }) }}">{{ "Edit"|trans }}</a>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
+        {{ "Delete"|trans }}
+    </button>
+{% endblock %}
+
+
+{% block body %}
+    <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ "Id"|trans }}</th>
                 <td>{{ location.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>{{ "Name"|trans }}</th>
                 <td>{{ location.name }}</td>
             </tr>
             <tr>
-                <th>Lat</th>
+                <th>{{ "Lat"|trans }}</th>
                 <td>{{ location.lat }}</td>
             </tr>
             <tr>
-                <th>Lng</th>
+                <th>{{ "Lng"|trans }}</th>
                 <td>{{ location.lng }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{ "Description"|trans }}</th>
                 <td>{{ location.description |raw }}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('location_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('location_edit', { 'id': location.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="panel">
+        {% include 'includes/_init_map.html.twig' with {"lat": location.lat, "lng":location.lng} only %}
+    </div>
+
+    <div class="notes">
+        {% include 'includes/_notes_group.html.twig' with {"notes": location.notes} only %}
+    </div>
+
+    {% include 'includes/_delete_modal.html.twig' with {"delete_form": delete_form} only %}
 {% endblock %}
+

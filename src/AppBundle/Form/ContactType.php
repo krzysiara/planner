@@ -31,7 +31,7 @@ class ContactType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'required'=>false,
-                'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                     return $er->createQueryBuilder('l')
                         ->where('l.profile = :owner')
                         ->setParameter('owner', $ownerProfile);
@@ -58,6 +58,4 @@ class ContactType extends AbstractType
     {
         return 'appbundle_contact';
     }
-
-
 }

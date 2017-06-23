@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Planner{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('bundles/app/js/jquery.min.js') }}"><\/script>')</script>
+
+        {% stylesheets
+        'bundles/app/css/bootstrap-datepicker3.css'
+        'bundles/app/css/bootstrap.min.css'
+        'bundles/app/css/ie10-viewport-bug-workaround.css'
+        'bundles/app/css/dashboard.css'
+        'bundles/app/css/main.css'
+
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path("homepage") }}">Event Planner {% if app.user %}- <span>{{ "Hello"|trans }} {{ app.user.username }}!</span></a>{% endif %}
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li> <a href="{{ path('user_index')}}">{{ "Users"|trans }}</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('homepage') }}">{{ "Planner"|trans }}</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li><a href="{{ path('fos_user_profile_show') }}">{{ "Profile"|trans }}</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+
+                    {% endif %}
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                       <li> <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">{{ "Exit impersonation"|trans }}</a></li>
+                    {% endif %}
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% for type, messages in app.session.flashBag.all %}
+
+            {% for message in messages %}
+                {% include 'includes/_base_alert.html.twig' with {"type":  "info" , "message":   message|trans({}, 'FOSUserBundle')  } %}
+            {% endfor %}
+        {% endfor %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+        {% javascripts
+        'bundles/app/js/bootstrap.min.js'
+        'bundles/app/js/ie10-viewport-bug-workaround.js'
+
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% block javascripts %}{% endblock %}
+    </body>
+</html>

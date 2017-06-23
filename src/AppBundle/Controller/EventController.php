@@ -3,8 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Event;
+use AppBundle\Repository\EventRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Welp\IcalBundle\Response\CalendarResponse;
 
 /**
  * Event controller.
@@ -16,16 +19,79 @@ class EventController extends BaseController
     /**
      * Lists all events.
      *
-     * @Route("/", name="event_index")
+     * @Route(
+     *     "/",
+     *     defaults={"page": 1},
+     *     name="event_index",
+     * )
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="event_index_paginated",
+     * )
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $events = $em->getRepository('AppBundle:Event')->findByProfile($this->getUserProfile());
+        $repository = $this->get("app.repository.event");
+        $events = $repository->findAllPaginated($page, $this->getUserProfile());
 
         return $this->render('event/index.html.twig', array(
+            'events' => $events,
+        ));
+    }
+
+    /**
+     * Generate calendar event ICAL for welpAction
+     * @Route("/ical", name="app_ical")
+     */
+    public function icalAction()
+    {
+        $calendar= $this->get('app.service.iCalService')->createICal($this->getUserProfile());
+
+        $headers = array();
+        $calendarResponse = new CalendarResponse($calendar, 200, $headers);
+
+        return $calendarResponse;
+    }
+
+    /**
+     * Lists events from day.
+     *
+     * @Route("/day/{date}", name="day_event")
+     * @Method("GET")
+     *
+     * parse date: 10%20september%202000 or now
+     */
+    public function dayIndexAction($date)
+    {
+        $date = new \DateTime($date);
+        /** @var EventRepository $eventRep */
+        $eventRep = $this->get("app.repository.event");
+        $profile = $this->getUserProfile();
+        $events = $eventRep->findTodayEvents($profile, $date);
+
+        return $this->render('event/day.html.twig', array(
+            'events' => $events,
+        ));
+    }
+
+    /**
+     * Lists events from day.
+     *
+     * @Route("/month/{month}/{year}", name="month_event")
+     * @Method("GET")
+     *
+     * parse date: 10%20september%202000 or now
+     */
+    public function monthIndexAction($month, $year)
+    {
+        /** @var EventRepository $eventRep */
+        $eventRep = $this->get("app.repository.event");
+        $profile = $this->getUserProfile();
+        $events = $eventRep->findMonthEvents($profile, $month, $year);
+
+        return $this->render('event/month.html.twig', array(
             'events' => $events,
         ));
     }
@@ -48,7 +114,7 @@ class EventController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
-            $em->flush($event);
+            $em->flush();
             $this->addFlash('success', 'form.event_new.success');
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
@@ -84,7 +150,7 @@ class EventController extends BaseController
      * @Route("/{id}/edit", name="event_edit")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @param Event $event
+     * @param Event   $event
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Event $event)
@@ -111,7 +177,7 @@ class EventController extends BaseController
      * @Route("/{id}", name="event_delete")
      * @Method("DELETE")
      * @param Request $request
-     * @param Event $event
+     * @param Event   $event
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Event $event)
@@ -138,7 +204,7 @@ class EventController extends BaseController
      */
     private function createDeleteForm(Event $event)
     {
-        return $this->createFormBuilder()
+        return $this->createFormBuilder(null, ['attr' => ['id' => 'delete_form']])
             ->setAction($this->generateUrl('event_delete', array('id' => $event->getId())))
             ->setMethod('DELETE')
             ->getForm()

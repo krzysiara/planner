@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}New note{% endblock %}
+{% block pageHeader %}{{"New note"|trans }}{% endblock %}
 {% block body %}
-    {% include 'includes/_base_form.html.twig' with {"form": form, "submitValue": "Create", "path": backRoute} %}
+    {% include
+    'includes/_base_form.html.twig' with
+    {"form": form, "submitValue": "Create"|trans , "path": backRoute}
+    %}
 {% endblock %}

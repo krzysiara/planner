@@ -56,5 +56,4 @@ class LoadColorData extends AbstractFixture implements ContainerAwareInterface
         }
         $manager->flush();
     }
-
 }

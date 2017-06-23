@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block pageHeader %}Event {{ event.title }}{% endblock %}
+{% block pageHeader %}{{"Event"|trans }} {{ event.title }}{% endblock %}
 
 {% block pageActions %}
-    <a class="btn btn-default" href="{{ path('event_index') }}">Back to the list</a>
-    <a class="btn btn-default" href="{{ path('note_add_to_event' , {'event': event.id}) }}"><span class="glyphicon glyphicon-list-alt"></span> Add note</a>
-    <a class="btn btn-default" href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a>
+    <a class="btn btn-default" href="{{ path('event_index') }}">{{"Back to the list"|trans }}</a>
+    <a class="btn btn-default" href="{{ path('note_add_to_event' , {'event': event.id}) }}"><span class="glyphicon glyphicon-list-alt"></span> {{"Add note"|trans }}</a>
+    <a class="btn btn-default" href="{{ path('event_edit', { 'id': event.id }) }}">{{"Edit"|trans }}</a>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
-        Delete
+        {{"Delete"|trans }}
     </button>
 {% endblock %}
 
@@ -16,24 +16,29 @@
         <table class="table table-striped table-bordered">
             <tbody>
                 <tr>
-                    <th>Id</th>
+                    <th>{{"Id"|trans }}</th>
                     <td>{{ event.id }}</td>
                 </tr>
                 <tr>
-                    <th>Startdate</th>
+                    <th>{{"Startdate"|trans }}</th>
                     <td>{% if event.startDate %}{{ event.startDate|date('Y-m-d') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Starttime</th>
+                    <th>{{"Starttime"|trans }}</th>
                     <td>{% if event.startTime %}{{ event.startTime|date('H:i:s') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Enddate</th>
+                    <th>{{"Enddate"|trans }}</th>
                     <td>{% if event.endDate %}{{ event.endDate|date('Y-m-d') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Endtime</th>
+                    <th>{{"Endtime"|trans }}</th>
                     <td>{% if event.endTime %}{{ event.endTime|date('H:i:s') }}{% endif %}</td>
+                </tr>
+
+                <tr>
+                    <th>{{"Color"|trans }}</th>
+                    <td {% if event.color %}style="color: {{ event.color.color }}" {% endif %}>{% if event.color %}{{ event.color.name }}{% else %}{{"none"|trans }}{% endif %}</td>
                 </tr>
             </tbody>
         </table>
@@ -41,13 +46,24 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">
-           Description
+           {{"Description"|trans }}
         </div>
 
         <div class="panel-body">
             {{ event.description |raw }}
         </div>
     </div>
+
+
+    {% if event.location %}
+        <div class="panel panel-default location">
+            <div class="panel-heading">
+                {{"Location"|trans }}
+            </div>
+            {% include 'includes/_init_map.html.twig' with {"lat": event.location.lat, "lng":event.location.lng} only %}
+
+        </div>
+    {% endif %}
 
     <div class="notes">
         {% include 'includes/_notes_group.html.twig' with {"notes": event.notes} only %}

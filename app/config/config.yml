@@ -6,7 +6,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: pl
 
 framework:
     #esi: ~
@@ -34,6 +34,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form:
+        resources:
+            - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -66,6 +69,10 @@ swiftmailer:
     spool: { type: memory }
 
 fos_user:
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
@@ -75,3 +82,37 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+    bundles:        [ 'OhGoogleMapFormTypeBundle', 'FOSUserBundle' ]
+
+welp_ical:
+    default_timezone: "Europe/Warsaw"
+    default_prodid: "-//WelpIcalBundle//Calendar App//PL"
+
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [AppBundle]
+        directories: ["%kernel.root_dir%/../src"]
+
+jms_di_extra:
+    automatic_controller_injections:
+        properties:
+            request: "@request"
+            router: "@router"
+
+        method_calls:
+            setRouter: ["@router"]
+
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/Resources/translations
+            ignored_domains: [routes]
+            excluded_dirs: [cache, data, logs]
+
+services:
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension

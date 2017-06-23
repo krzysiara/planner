@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+    const NUM_ITEMS = 10;
     /**
      * @var int
      *
@@ -104,7 +105,7 @@ class Event
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,7 +128,7 @@ class Event
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -150,7 +151,7 @@ class Event
     /**
      * Get startTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartTime()
     {
@@ -173,7 +174,7 @@ class Event
     /**
      * Get endDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -196,7 +197,7 @@ class Event
     /**
      * Get endTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndTime()
     {
@@ -219,7 +220,7 @@ class Event
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -242,7 +243,7 @@ class Event
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -252,10 +253,10 @@ class Event
     /**
      * Set profile
      *
-     * @param \AppBundle\Entity\Profile $profile
+     * @param Profile $profile
      * @return Event
      */
-    public function setProfile(\AppBundle\Entity\Profile $profile = null)
+    public function setProfile(Profile $profile = null)
     {
         $this->profile = $profile;
 
@@ -275,10 +276,10 @@ class Event
     /**
      * Set location
      *
-     * @param \AppBundle\Entity\Location $location
+     * @param Location $location
      * @return Event
      */
-    public function setLocation(\AppBundle\Entity\Location $location = null)
+    public function setLocation(Location $location = null)
     {
         $this->location = $location;
 
@@ -288,7 +289,7 @@ class Event
     /**
      * Get location
      *
-     * @return \AppBundle\Entity\Location 
+     * @return \AppBundle\Entity\Location
      */
     public function getLocation()
     {
@@ -298,10 +299,10 @@ class Event
     /**
      * Set color
      *
-     * @param \AppBundle\Entity\Color $color
+     * @param Color $color
      * @return Event
      */
-    public function setColor(\AppBundle\Entity\Color $color = null)
+    public function setColor(Color $color = null)
     {
         $this->color = $color;
 
@@ -311,7 +312,7 @@ class Event
     /**
      * Get color
      *
-     * @return \AppBundle\Entity\Color 
+     * @return \AppBundle\Entity\Color
      */
     public function getColor()
     {
@@ -321,10 +322,10 @@ class Event
     /**
      * Add notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $notes
      * @return Event
      */
-    public function addNote(\AppBundle\Entity\Note $notes)
+    public function addNote(Note $notes)
     {
         $this->notes[] = $notes;
 
@@ -334,9 +335,9 @@ class Event
     /**
      * Remove notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $notes
      */
-    public function removeNote(\AppBundle\Entity\Note $notes)
+    public function removeNote(Note $notes)
     {
         $this->notes->removeElement($notes);
     }
@@ -344,7 +345,7 @@ class Event
     /**
      * Get notes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotes()
     {
@@ -362,15 +363,15 @@ class Event
      *
      * @param \AppBundle\Entity\Contact $participants
      */
-    public function removeParticipant(\AppBundle\Entity\Contact $participants)
+    public function removeParticipant(Contact $participant)
     {
-        $this->participants->removeElement($participants);
+        $this->participants->removeElement($participant);
     }
 
     /**
      * Get participants
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getParticipants()
     {

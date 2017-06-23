@@ -22,6 +22,7 @@ class EventType extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
+                'label'=>'Start date'
             ])
             ->add('startTime', 'time')
             ->add('endDate', 'date', [
@@ -46,7 +47,7 @@ class EventType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'required'=>false,
-                'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                     return $er->createQueryBuilder('l')
                         ->where('l.profile = :owner')
                         ->setParameter('owner', $ownerProfile);
@@ -57,7 +58,7 @@ class EventType extends AbstractType
                 'choice_label' => 'fullname',
                 'multiple' => true,
                 'required'=>false,
-                'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                     return $er->createQueryBuilder('c')
                         ->where('c.profile = :owner')
                         ->setParameter('owner', $ownerProfile);
@@ -83,6 +84,4 @@ class EventType extends AbstractType
     {
         return 'appbundle_event';
     }
-
-
 }

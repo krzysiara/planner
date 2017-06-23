@@ -3,9 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Contact controller.
@@ -17,14 +17,23 @@ class ContactController extends BaseController
     /**
      * Lists all contact entities.
      *
-     * @Route("/", name="contact_index")
+     * @Route(
+     *     "/",
+     *     defaults={"page": 1},
+     *     name="contact_index",
+     * )
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="contact_index_paginated",
+     * )
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contacts = $em->getRepository('AppBundle:Contact')->findAll();
+        $contacts = $em->getRepository('AppBundle:Contact')->findAllPaginated($page, $this->getUserProfile());
 
         return $this->render('contact/index.html.twig', array(
             'contacts' => $contacts,
@@ -36,6 +45,8 @@ class ContactController extends BaseController
      *
      * @Route("/new", name="contact_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -65,6 +76,8 @@ class ContactController extends BaseController
      *
      * @Route("/{id}", name="contact_show")
      * @Method("GET")
+     * @param Contact $contact
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Contact $contact)
     {
@@ -81,6 +94,9 @@ class ContactController extends BaseController
      *
      * @Route("/{id}/edit", name="contact_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Contact $contact
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Contact $contact)
     {
@@ -108,6 +124,9 @@ class ContactController extends BaseController
      *
      * @Route("/{id}", name="contact_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Contact $contact
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Contact $contact)
     {
@@ -136,7 +155,6 @@ class ContactController extends BaseController
         return $this->createFormBuilder(null, ['attr' => ['id' => 'delete_form']])
             ->setAction($this->generateUrl('contact_delete', array('id' => $contact->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

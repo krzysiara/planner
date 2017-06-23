@@ -15,6 +15,7 @@ class Note
     const CONTACT_TYPE = 1;
     const EVENT_TYPE = 2;
     const LOCATION_TYPE = 3;
+    const NUM_ITEMS = 9;
 
     /**
      * @var int
@@ -71,9 +72,16 @@ class Note
     private $contact;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Profile", inversedBy="notes")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     */
+    private $profile;
+
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -96,7 +104,7 @@ class Note
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -119,7 +127,7 @@ class Note
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -142,7 +150,7 @@ class Note
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
@@ -155,7 +163,7 @@ class Note
      * @param \AppBundle\Entity\Color $color
      * @return Note
      */
-    public function setColor(\AppBundle\Entity\Color $color = null)
+    public function setColor(Color $color = null)
     {
         $this->color = $color;
 
@@ -165,7 +173,7 @@ class Note
     /**
      * Get color
      *
-     * @return \AppBundle\Entity\Color 
+     * @return \AppBundle\Entity\Color
      */
     public function getColor()
     {
@@ -178,17 +186,19 @@ class Note
      * @param \AppBundle\Entity\Event $event
      * @return Note
      */
-    public function setEvent(\AppBundle\Entity\Event $event = null)
+    public function setEvent(Event $event = null)
     {
         $this->event = $event;
         $this->setType($this::EVENT_TYPE);
+        $this->setProfile($event->getProfile());
+
         return $this;
     }
 
     /**
      * Get event
      *
-     * @return \AppBundle\Entity\Event 
+     * @return \AppBundle\Entity\Event
      */
     public function getEvent()
     {
@@ -201,10 +211,11 @@ class Note
      * @param \AppBundle\Entity\Location $location
      * @return Note
      */
-    public function setLocation(\AppBundle\Entity\Location $location = null)
+    public function setLocation(Location $location = null)
     {
         $this->location = $location;
         $this->setType($this::LOCATION_TYPE);
+        $this->setProfile($location->getProfile());
 
         return $this;
     }
@@ -212,7 +223,7 @@ class Note
     /**
      * Get location
      *
-     * @return \AppBundle\Entity\Location 
+     * @return \AppBundle\Entity\Location
      */
     public function getLocation()
     {
@@ -225,21 +236,52 @@ class Note
      * @param \AppBundle\Entity\Contact $contact
      * @return Note
      */
-    public function setContact(\AppBundle\Entity\Contact $contact = null)
+    public function setContact(Contact $contact = null)
     {
         $this->contact = $contact;
         $this->setType($this::CONTACT_TYPE);
+        $this->setProfile($contact->getProfile());
+
+        return $this;
+    }
+
+
+    /**
+     * Set profile
+     *
+     * @param \AppBundle\Entity\Profile $profile
+     * @return Location
+     */
+    public function setProfile(Profile $profile = null)
+    {
+        $this->profile = $profile;
 
         return $this;
     }
 
     /**
+     * Get profile
+     *
+     * @return \AppBundle\Entity\Profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+
+    /**
      * Get contact
      *
-     * @return \AppBundle\Entity\Contact 
+     * @return \AppBundle\Entity\Contact
      */
     public function getContact()
     {
         return $this->contact;
+    }
+
+    public function getColorName()
+    {
+        return $this->color ? $this->getColor()->getName() : "-";
     }
 }

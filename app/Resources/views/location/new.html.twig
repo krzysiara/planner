@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}Location creation{% endblock %}
+{% block pageHeader %}{{"Location creation"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_base_form.html.twig' with
     {"form": form, "submitValue": "Create", "path": path('location_index')} %}

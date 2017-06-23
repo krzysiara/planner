@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% block pageHeader %}{{"Profile edit"|trans }}{% endblock %}
+{% block fos_user_content %}
+
+    <div class="container-fluid">
+        {% include 'includes/_profile_menu.html.twig' %}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    {% include 'includes/_base_alert.html.twig' with {"type":  label , "message":  flash } %}
+                {% endfor %}
+            {% endfor %}
+            <h1 class="page-header">{{ "Profile Edit"|trans }}</h1>
+            {% include 'includes/_base_form.html.twig'
+            with {"form": edit_form, "submitValue": "Edit"|trans, "path": path('edit_user_profile')} %}
+
+        </div>
+    </div>
+{% endblock %}
+    {% block javascripts %}
+        {% include 'includes/_date_picker_init.html.twig' %}
+    {% endblock %}

@@ -24,11 +24,12 @@ class BaseController extends Controller
      * @param Contact | Location | Event $object
      * @return bool
      */
-    public function checkAccessPermission($object){
-        if($this->isGranted('ROLE_SUPERADMIN')){
+    public function checkAccessPermission($object)
+    {
+        if ($this->isGranted('ROLE_SUPERADMIN')) {
             return true;
-        }else{
-            if($object->getProfile()!=$this->getUserProfile()){
+        } else {
+            if ($object->getProfile()!=$this->getUserProfile()) {
                 throw new AccessDeniedException();
             }
         }

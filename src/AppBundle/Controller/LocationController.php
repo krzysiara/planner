@@ -3,9 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Location;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Location controller.
@@ -17,14 +17,24 @@ class LocationController extends BaseController
     /**
      * Lists all location entities.
      *
-     * @Route("/", name="location_index")
+     *
+     *@Route(
+     *     "/",
+     *     defaults={"page": 1},
+     *     name="location_index",
+     * )
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="location_index_paginated",
+     * )
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $locations = $em->getRepository('AppBundle:Location')->findByProfile($this->getUserProfile());
+        $locations = $em->getRepository('AppBundle:Location')->findAllPaginated($page, $this->getUserProfile());
 
         return $this->render('location/index.html.twig', array(
             'locations' => $locations,
@@ -36,6 +46,8 @@ class LocationController extends BaseController
      *
      * @Route("/new", name="location_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -63,6 +75,8 @@ class LocationController extends BaseController
      *
      * @Route("/{id}", name="location_show")
      * @Method("GET")
+     * @param Location $location
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Location $location)
     {
@@ -80,6 +94,9 @@ class LocationController extends BaseController
      *
      * @Route("/{id}/edit", name="location_edit")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Location $location
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Location $location)
     {
@@ -106,6 +123,9 @@ class LocationController extends BaseController
      *
      * @Route("/{id}", name="location_delete")
      * @Method("DELETE")
+     * @param Request  $request
+     * @param Location $location
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Location $location)
     {
@@ -132,7 +152,7 @@ class LocationController extends BaseController
      */
     private function createDeleteForm(Location $location)
     {
-        return $this->createFormBuilder()
+        return $this->createFormBuilder(null, ['attr' => ['id' => 'delete_form']])
             ->setAction($this->generateUrl('location_delete', array('id' => $location->getId())))
             ->setMethod('DELETE')
             ->getForm()

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-06-23T19:27:10Z" source-language="en" target-language="pl" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="da39a3ee5e6b4b0d3255bfef95601890afd80709" resname="">
+        <source> </source>
+        <target> </target>
+        <jms:reference-file line="14">/Resources/views/contact/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a2e2c0658372d6f182a8b876a2fbe3aab1243a75" resname="Account Edit">
+        <source>Account Edit</source>
+        <target>Edytuj konto</target>
+        <jms:reference-file line="10">/Resources/FOSUserBundle/views/Profile/edit_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c3cd636a585b20c40ac2df5ffb403e83cb2eef51" resname="Actions">
+        <source>Actions</source>
+        <target>Akcje</target>
+        <jms:reference-file line="15">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="16">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/views/location/index.html.twig</jms:reference-file>
+        <jms:reference-file line="14">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="344d8b9acabc894ddf99d242e90a3b5b8434bcb1" resname="Add new">
+        <source>Add new</source>
+        <target>Dodaj</target>
+        <jms:reference-file line="4">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/Resources/views/location/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="757092db3c4bba84c85d4979f01a33db638dee2d" resname="Add note">
+        <source>Add note</source>
+        <target>Dodaj notatkę</target>
+        <jms:reference-file line="7">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="7">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="410bf23a3f080def9c7a976a16305bcde7943ed1" resname="Are you sure?">
+        <source>Are you sure?</source>
+        <target>Jesteś pewien?</target>
+        <jms:reference-file line="10">/Resources/views/includes/_delete_modal.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b52b36b7269fbfc58ec24bb724691951a3decbe8" resname="Back">
+        <source>Back</source>
+        <target>Powrót</target>
+        <jms:reference-file line="7">/Resources/views/includes/_base_form.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b70ce367115ccf7fa9002aae7c1f8d6147a12202" resname="Back to the list">
+        <source>Back to the list</source>
+        <target>Powrót do listy</target>
+        <jms:reference-file line="6">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a6b9d69f57d94a826930e45360e373533bfd130d" resname="Birthday">
+        <source>Birthday</source>
+        <target>Urodziny</target>
+        <jms:reference-file line="39">/Resources/views/contact/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="49289db43e663a3df5e2c70714722ecc54895565" resname="Change Password">
+        <source>Change Password</source>
+        <target>Zmień hasło</target>
+        <jms:reference-file line="14">/Resources/FOSUserBundle/views/ChangePassword/changePassword.html.twig</jms:reference-file>
+        <jms:reference-file line="7">/Resources/views/includes/_profile_menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="bbfa773e5a63a5ea58c9b6207e608ca0120e592a" resname="Close">
+        <source>Close</source>
+        <target>Zamknij</target>
+        <jms:reference-file line="15">/Resources/views/includes/_delete_modal.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1d0c8304baedcf8e3a78982c2e7c0b04622bf2a0" resname="Color">
+        <source>Color</source>
+        <target>Kolor</target>
+        <jms:reference-file line="40">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c9f2829e382c51af9dc4b1fda6a404bbd13338a9" resname="Confirm delete">
+        <source>Confirm delete</source>
+        <target>Potwierdz usunięcie</target>
+        <jms:reference-file line="7">/Resources/views/includes/_delete_modal.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
+        <source>Contact</source>
+        <target>Kontakt</target>
+        <jms:reference-file line="14">/Resources/views/includes/_notes_group.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="83b9b8f558573ab901a607074587a57d0f14944f" resname="Contact edit">
+        <source>Contact edit</source>
+        <target>Edytuj kontakt</target>
+        <jms:reference-file line="3">/Resources/views/contact/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b0dd615cbbdcbf21ffb72115599ca915634fcb85" resname="Contacts">
+        <source>Contacts</source>
+        <target>Kontakty</target>
+        <jms:reference-file line="76">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f266a691e0db5bd8f000fc784662dcc290ca8a9e" resname="Contacts creation">
+        <source>Contacts creation</source>
+        <target>Dodaj nowy kontakt</target>
+        <jms:reference-file line="3">/Resources/views/contact/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6e157c5da4410b7e9de85f5c93026b9176e69064" resname="Create">
+        <source>Create</source>
+        <target>Zapisz</target>
+        <jms:reference-file line="7">/Resources/views/note/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f6fdbe48dc54dd86f63097a03bd24094dedd713a" resname="Delete">
+        <source>Delete</source>
+        <target>Usuń</target>
+        <jms:reference-file line="10">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
+        <source>Description</source>
+        <target>Opis</target>
+        <jms:reference-file line="49">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="16">/Resources/views/location/index.html.twig</jms:reference-file>
+        <jms:reference-file line="35">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f4f4473df8cb59f0a369aebee3d1509adc0151c6" resname="Disabled">
+        <source>Disabled</source>
+        <target>Nieaktywny</target>
+        <jms:reference-file line="13">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5301648dcf6b53cefc9ed52999aaa92d4603cae0" resname="Edit">
+        <source>Edit</source>
+        <target>Edytuj</target>
+        <jms:reference-file line="2">/Resources/FOSUserBundle/views/ChangePassword/changePassword_content.html.twig</jms:reference-file>
+        <jms:reference-file line="12">/Resources/FOSUserBundle/views/Profile/edit_content.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/Resources/views/contact/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="27">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="29">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="8">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="32">/Resources/views/includes/_notes_group.html.twig</jms:reference-file>
+        <jms:reference-file line="28">/Resources/views/location/index.html.twig</jms:reference-file>
+        <jms:reference-file line="8">/Resources/views/location/show.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/views/profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/views/settings/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a7bbd29ef81b769732e285163cf593aa564bf116" resname="Edit Account">
+        <source>Edit Account</source>
+        <target>Edytuj konto</target>
+        <jms:reference-file line="5">/Resources/views/includes/_profile_menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cd280a41f75884f718df358791a18a5eb7bf6493" resname="Edit Profile">
+        <source>Edit Profile</source>
+        <target>Edytuj profil</target>
+        <jms:reference-file line="6">/Resources/views/includes/_profile_menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+        <jms:reference-file line="14">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="35">/Resources/views/contact/show.html.twig</jms:reference-file>
+        <jms:reference-file line="11">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="477eb82d2a0174a758db27c00a24c9b87f3f752c" resname="Enddate">
+        <source>Enddate</source>
+        <target>Data zakończenia</target>
+        <jms:reference-file line="31">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="44aaff2d695d1cfa6178c455a9da9e9d187659d6" resname="Endtime">
+        <source>Endtime</source>
+        <target>Godzina zakończenia</target>
+        <jms:reference-file line="35">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ad8919ace091b14011c6439cfd5e1707b58f5abd" resname="Event">
+        <source>Event</source>
+        <target>Wydarzenie</target>
+        <jms:reference-file line="3">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="16">/Resources/views/includes/_notes_group.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="aa6c6f7bc748139dd231b7f78114413db919730e" resname="Event edit">
+        <source>Event edit</source>
+        <target>Edytuj wydarzenie</target>
+        <jms:reference-file line="3">/Resources/views/event/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c5497bca58468ae64aed6c0fd921109217988db3" resname="Events">
+        <source>Events</source>
+        <target>Wydarzenia</target>
+        <jms:reference-file line="75">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="2">/Resources/views/event/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dd89c3031a81b3d0e24ea236cfb39ae0cd5b62a1" resname="Exit impersonation">
+        <source>Exit impersonation</source>
+        <target>Opuść tryb ucieleśnienia</target>
+        <jms:reference-file line="54">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="61">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="54">/Resources/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f3e4fadb9e370a1e2c0c622c01fc8c77daf93a2c" resname="Export">
+        <source>Export</source>
+        <target>Eksportuj</target>
+        <jms:reference-file line="3">/Resources/views/default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0" resname="Hello">
+        <source>Hello</source>
+        <target>Witaj</target>
+        <jms:reference-file line="37">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="45">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="37">/Resources/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="474ae52625b87d7628ae7b20a499329a99e07119" resname="Id">
+        <source>Id</source>
+        <target>Id</target>
+        <jms:reference-file line="11">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/Resources/views/contact/show.html.twig</jms:reference-file>
+        <jms:reference-file line="12">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="14">/Resources/views/location/index.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/Resources/views/location/show.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="fa304b37de075b433b30a0e720fc5f910ea2f1ba" resname="Impersonate">
+        <source>Impersonate</source>
+        <target>Wciel się w użytkownika</target>
+        <jms:reference-file line="42">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="43dab84ff6552a93c48023c606773ef8bd77f141" resname="Last login">
+        <source>Last login</source>
+        <target>Ostatnio zalogowany</target>
+        <jms:reference-file line="12">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4b5152274022e4a3e476ccee4ce6ae0e0dfb1c9f" resname="Lat">
+        <source>Lat</source>
+        <target>Lat</target>
+        <jms:reference-file line="27">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a791bd9a504a5cac2529dbe24a3da21084022c42" resname="Lng">
+        <source>Lng</source>
+        <target>Lng</target>
+        <jms:reference-file line="31">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d219c68101f532de10add2cf42fb9dbeca73d3be" resname="Location">
+        <source>Location</source>
+        <target>Miejsce</target>
+        <jms:reference-file line="61">/Resources/views/event/show.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/Resources/views/includes/_notes_group.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="663b553b46a7bdd148333484004d698618d3b35c" resname="Location creation">
+        <source>Location creation</source>
+        <target>Dodaj miejsce</target>
+        <jms:reference-file line="3">/Resources/views/location/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="65ffaeb207c529cd318966e6f9b22c8d6a85799f" resname="Location edit">
+        <source>Location edit</source>
+        <target>Edytuj miejsce</target>
+        <jms:reference-file line="3">/Resources/views/location/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="36436a236a7ee433b11663441f20d533030ad865" resname="My Profile &amp; Account">
+        <source><![CDATA[My Profile & Account]]></source>
+        <target>Mój profil i konto</target>
+        <jms:reference-file line="4">/Resources/views/includes/_profile_menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="709a23220f2c3d64d1e1d6d18c4d5280f8d82fca" resname="Name">
+        <source>Name</source>
+        <target>Imię</target>
+        <jms:reference-file line="12">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/Resources/views/contact/show.html.twig</jms:reference-file>
+        <jms:reference-file line="15">/Resources/views/location/index.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/Resources/views/location/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6396b65c4ecf46057f4fc66f1040f1f9e114d8ee" resname="New Event">
+        <source>New Event</source>
+        <target>Nowe wydarzenie</target>
+        <jms:reference-file line="3">/Resources/views/event/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2b7b05c002d521157e8afcd92474276db36d1aa6" resname="New note">
+        <source>New note</source>
+        <target>Nowa notatka</target>
+        <jms:reference-file line="3">/Resources/views/note/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7e608534583e48149a02f5a770776c11a0638cca" resname="Note edit">
+        <source>Note edit</source>
+        <target>Edytuj notatkę</target>
+        <jms:reference-file line="3">/Resources/views/note/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="70440046a3dc2e079f23ee1c57dfa76669b732aa" resname="Notes">
+        <source>Notes</source>
+        <target>Notatki</target>
+        <jms:reference-file line="78">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="2">/Resources/views/note/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="77064d5265236e0ac252f3fc4a5ba7b274b6a583" resname="Phone">
+        <source>Phone</source>
+        <target>Telefon</target>
+        <jms:reference-file line="31">/Resources/views/contact/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0cd3597453ab504a3dbeec3289e21abe922d223a" resname="Places">
+        <source>Places</source>
+        <target>Miejsca</target>
+        <jms:reference-file line="77">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="109fb29b7bdee219e920d88ae8afd19fdd3aa18f" resname="Places list">
+        <source>Places list</source>
+        <target>Lista miejsc</target>
+        <jms:reference-file line="2">/Resources/views/location/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eca1f91896003e4ac6cbcc0c2229d47206d66a37" resname="Planner">
+        <source>Planner</source>
+        <target>Planer</target>
+        <jms:reference-file line="44">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="50">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="74">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="44">/Resources/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ff4fc0276e960c348647b647235f68200887c9d2" resname="Profile">
+        <source>Profile</source>
+        <target>Profil</target>
+        <jms:reference-file line="46">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="55">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="46">/Resources/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0b1b0a61cf59612d30defb2d326ef954c629fd5e" resname="Profile &amp; Account">
+        <source><![CDATA[Profile & Account]]></source>
+        <target>Profil i konto</target>
+        <jms:reference-file line="10">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="216c8a7cba758413cc431f72c7ac0c1a73279bb4" resname="Profile Edit">
+        <source>Profile Edit</source>
+        <target>Edytuj profil</target>
+        <jms:reference-file line="15">/Resources/views/profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a655def8b1361892c11eb33ff9dbfa80b4b48741" resname="Profile edit">
+        <source>Profile edit</source>
+        <target>Edytuj profil</target>
+        <jms:reference-file line="3">/Resources/views/profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c7f73bb54d928922c3838bb789ee9fb8a5b1eb37" resname="Settings">
+        <source>Settings</source>
+        <target>Ustawienia</target>
+        <jms:reference-file line="8">/Resources/views/includes/_profile_menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="324985962de77c782aa43b6fa7d2b6e23ccda87d" resname="Settings Edit">
+        <source>Settings Edit</source>
+        <target>Edytuj ustawienia</target>
+        <jms:reference-file line="15">/Resources/views/settings/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2b0883baceb2391fbe7a9be0a88d13803afb812e" resname="Settings edit">
+        <source>Settings edit</source>
+        <target>Edytuj ustawienia</target>
+        <jms:reference-file line="3">/Resources/views/settings/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d97d1ee339e4eeaba8cac91dca37c8b4ec8f5501" resname="Show">
+        <source>Show</source>
+        <target>Pokaż szczegóły</target>
+        <jms:reference-file line="26">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="28">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="31">/Resources/views/includes/_notes_group.html.twig</jms:reference-file>
+        <jms:reference-file line="27">/Resources/views/location/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0cb525a1d1646a0cce6538b73d470769c279b066" resname="Startdate">
+        <source>Startdate</source>
+        <target>Data rozpoczęcia</target>
+        <jms:reference-file line="14">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5e35df681b0314f9e0ea5cd80b095e6bc0fd03b0" resname="Starttime">
+        <source>Starttime</source>
+        <target>Godzina rozpoczęcia</target>
+        <jms:reference-file line="15">/Resources/views/event/index.html.twig</jms:reference-file>
+        <jms:reference-file line="27">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="77dfca2a56f9b1ffc2b6687e230088cf86fbc074" resname="Surname">
+        <source>Surname</source>
+        <target>Nazwisko</target>
+        <jms:reference-file line="13">/Resources/views/contact/index.html.twig</jms:reference-file>
+        <jms:reference-file line="27">/Resources/views/contact/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="768e0c1c69573fb588f61f1308a015c11468e05f" resname="Title">
+        <source>Title</source>
+        <target>Tytuł</target>
+        <jms:reference-file line="13">/Resources/views/event/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="84c29015de33e5d22422382a372caba5c58f8c01" resname="Username">
+        <source>Username</source>
+        <target>Nazwa użytkownika</target>
+        <jms:reference-file line="10">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="57f2b181d0a5e79a147ea1cdf41457f58dbbb3c9" resname="Users">
+        <source>Users</source>
+        <target>Użytkownicy</target>
+        <jms:reference-file line="42">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="52">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="42">/Resources/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="2">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="07596f183f5e91b1778d5e47b2752b8d42aa763d" resname="disabled">
+        <source>disabled</source>
+        <target>nieaktywny</target>
+        <jms:reference-file line="27">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3ea3f9802accf8817bacd6f3df46a73b93ccddec" resname="enabled">
+        <source>enabled</source>
+        <target>aktywny</target>
+        <jms:reference-file line="25">/Resources/views/user/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="71f8e7976e4cbc4561c9d62fb283e7f788202acb" resname="none">
+        <source>none</source>
+        <target>żaden</target>
+        <jms:reference-file line="41">/Resources/views/event/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="29ddb77394b9f0f4a9aa7c4f0ea6776de9552abb" resname="profile.show.birthdate">
+        <source>profile.show.birthdate</source>
+        <target>Urodziny</target>
+        <jms:reference-file line="15">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0e76b6d3ea73744685d6da8578579b1dd21fe66d" resname="profile.show.name">
+        <source>profile.show.name</source>
+        <target>Imię</target>
+        <jms:reference-file line="13">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1eb8719680b02f36866681b53225de70ea2b67a8" resname="profile.show.surname">
+        <source>profile.show.surname</source>
+        <target>Nazwisko</target>
+        <jms:reference-file line="14">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+
+
+      <trans-unit id="label.startdate">
+        <source>Start date</source>
+        <target>Data rozpoczęcia</target>
+      </trans-unit>
+      <trans-unit id="label.starttime">
+        <source>Start time</source>
+        <target>Godzina rozpoczęcia</target>
+      </trans-unit>
+      <trans-unit id="label.enddate">
+        <source>End date</source>
+        <target>Data rozpoczęcia</target>
+      </trans-unit>
+      <trans-unit id="label.endtime">
+        <source>End time</source>
+        <target>Godzina rozpoczęcia</target>
+      </trans-unit>
+      <trans-unit id="label.participants">
+        <source>Participants</source>
+        <target>Uczestnicy</target>
+      </trans-unit>
+      <trans-unit id="label.edytuj">
+        <source>Edytuj</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="label.Address">
+        <source>Address</source>
+        <target>Adres</target>
+      </trans-unit>
+      <trans-unit id="Latlng">
+        <source>Latlng</source>
+        <target>Adres</target>
+      </trans-unit>
+      <trans-unit id="Search">
+        <source>Search</source>
+        <target>Szukaj</target>
+      </trans-unit>
+      <trans-unit id="Goto current location">
+        <source>Goto current location</source>
+        <target>Przejdź do adresu</target>
+      </trans-unit>
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Błąd!</target>
+      </trans-unit>
+
+
+    </body>
+  </file>
+</xliff>

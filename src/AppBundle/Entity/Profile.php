@@ -25,7 +25,7 @@ class Profile
 
     /**
      * One Profile has One User.
-     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="profile", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
@@ -66,19 +66,25 @@ class Profile
      */
     private $contacts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="profile")
+     */
+    private $notes;
+
 
     public function __construct()
     {
         $this->locations = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->contacts = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -101,7 +107,7 @@ class Profile
     /**
      * Get birthday
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthday()
     {
@@ -124,7 +130,7 @@ class Profile
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -147,7 +153,7 @@ class Profile
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -160,7 +166,7 @@ class Profile
      * @param \AppBundle\Entity\Location $locations
      * @return User
      */
-    public function addLocation(\AppBundle\Entity\Location $locations)
+    public function addLocation(Location $locations)
     {
         $this->locations[] = $locations;
 
@@ -172,7 +178,7 @@ class Profile
      *
      * @param \AppBundle\Entity\Location $locations
      */
-    public function removeLocation(\AppBundle\Entity\Location $locations)
+    public function removeLocation(Location $locations)
     {
         $this->locations->removeElement($locations);
     }
@@ -193,7 +199,7 @@ class Profile
      * @param \AppBundle\Entity\Event $events
      * @return User
      */
-    public function addEvent(\AppBundle\Entity\Event $events)
+    public function addEvent(Event $events)
     {
         $this->events[] = $events;
 
@@ -205,7 +211,7 @@ class Profile
      *
      * @param \AppBundle\Entity\Event $events
      */
-    public function removeEvent(\AppBundle\Entity\Event $events)
+    public function removeEvent(Event $events)
     {
         $this->events->removeElement($events);
     }
@@ -223,12 +229,12 @@ class Profile
     /**
      * Add contacts
      *
-     * @param \AppBundle\Entity\Contact $contacts
+     * @param \AppBundle\Entity\Contact $contact
      * @return User
      */
-    public function addContact(\AppBundle\Entity\Contact $contacts)
+    public function addContact(Contact $contact)
     {
-        $this->contacts[] = $contacts;
+        $this->contacts[] = $contact;
 
         return $this;
     }
@@ -236,11 +242,11 @@ class Profile
     /**
      * Remove contacts
      *
-     * @param \AppBundle\Entity\Contact $contacts
+     * @param \AppBundle\Entity\Contact $contact
      */
-    public function removeContact(\AppBundle\Entity\Contact $contacts)
+    public function removeContact(Contact $contact)
     {
-        $this->contacts->removeElement($contacts);
+        $this->contacts->removeElement($contact);
     }
 
     /**
@@ -252,6 +258,7 @@ class Profile
     {
         return $this->contacts;
     }
+    
 
 
     /**
@@ -260,7 +267,7 @@ class Profile
      * @param \AppBundle\Entity\User $user
      * @return Profile
      */
-    public function setUser(\AppBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -270,10 +277,44 @@ class Profile
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add note
+     *
+     * @param \AppBundle\Entity\Note $note
+     *
+     * @return Profile
+     */
+    public function addNote(\AppBundle\Entity\Note $note)
+    {
+        $this->notes[] = $note;
+
+        return $this;
+    }
+
+    /**
+     * Remove note
+     *
+     * @param \AppBundle\Entity\Note $note
+     */
+    public function removeNote(\AppBundle\Entity\Note $note)
+    {
+        $this->notes->removeElement($note);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }

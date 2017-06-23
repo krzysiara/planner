@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    {% include 'includes/_profile_menu.html.twig' %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                {% include 'includes/_base_alert.html.twig' with {"type":  label , "message":  flash } %}
+            {% endfor %}
+        {% endfor %}
+        <h1 class="page-header">{{ "Profile & Account"|trans }}</h1>
+        <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+        <p>{{ 'profile.show.name'|trans() }}: {{ user.profile.name }}</p>
+        <p>{{ 'profile.show.surname'|trans() }}: {{ user.profile.surname }}</p>
+        <p>{{ 'profile.show.birthdate'|trans() }}: {{ user.profile.birthday|date('Y-m-d') }}</p>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}Contact edit{% endblock %}
+{% block pageHeader %}{{"Contact edit"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_base_form.html.twig'
-    with {"form": edit_form, "submitValue": "Edit", "path": path('contact_show', {'id':contact.id})} %}
+    with {"form": edit_form, "submitValue": "Edit"|trans, "path": path('contact_show', {'id':contact.id})} %}
 
 {% endblock %}
 

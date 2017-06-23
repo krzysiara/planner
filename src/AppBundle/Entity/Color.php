@@ -61,7 +61,7 @@ class Color
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +84,7 @@ class Color
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -117,12 +117,13 @@ class Color
     /**
      * Add events
      *
-     * @param \AppBundle\Entity\Event $events
+     *
+     * @param $event
      * @return Color
      */
-    public function addEvent(\AppBundle\Entity\Event $events)
+    public function addEvent($event)
     {
-        $this->events[] = $events;
+        $this->events[] = $event;
 
         return $this;
     }
@@ -130,17 +131,18 @@ class Color
     /**
      * Remove events
      *
-     * @param \AppBundle\Entity\Event $events
+     * @param Event $event
+     * @internal param Event $events
      */
-    public function removeEvent(\AppBundle\Entity\Event $events)
+    public function removeEvent(Event $event)
     {
-        $this->events->removeElement($events);
+        $this->events->removeElement($event);
     }
 
     /**
      * Get events
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEvents()
     {
@@ -150,30 +152,29 @@ class Color
     /**
      * Add contacts
      *
-     * @param \AppBundle\Entity\Note $contacts
+     * @param Contact $contact
      * @return Color
      */
-    public function addContact(\AppBundle\Entity\Note $contacts)
+    public function addContact(Contact $contact)
     {
-        $this->contacts[] = $contacts;
+        $this->contacts[] = $contact;
 
         return $this;
     }
 
     /**
-     * Remove contacts
-     *
-     * @param \AppBundle\Entity\Note $contacts
+     * Remove contact
+     * @param Contact $contact
      */
-    public function removeContact(\AppBundle\Entity\Note $contacts)
+    public function removeContact(Contact $contact)
     {
-        $this->contacts->removeElement($contacts);
+        $this->contacts->removeElement($contact);
     }
 
     /**
      * Get contacts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContacts()
     {
@@ -185,7 +186,8 @@ class Color
      * @param string $colorCode
      * @return $this
      */
-    public function setData($name, $colorCode){
+    public function setData($name, $colorCode)
+    {
         $this->setName($name);
         $this->setColor($colorCode);
         return $this;
@@ -194,10 +196,10 @@ class Color
     /**
      * Add notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $notes
      * @return Color
      */
-    public function addNote(\AppBundle\Entity\Note $notes)
+    public function addNote(Note $notes)
     {
         $this->notes[] = $notes;
 
@@ -207,17 +209,17 @@ class Color
     /**
      * Remove notes
      *
-     * @param \AppBundle\Entity\Note $notes
+     * @param Note $note
      */
-    public function removeNote(\AppBundle\Entity\Note $notes)
+    public function removeNote(Note $note)
     {
-        $this->notes->removeElement($notes);
+        $this->notes->removeElement($note);
     }
 
     /**
      * Get notes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotes()
     {

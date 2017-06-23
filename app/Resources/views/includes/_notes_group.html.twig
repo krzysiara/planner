@@ -11,11 +11,11 @@
                     {{ note.title }}
                     {% if note.type %}
                         {% if note.type == 1 %}
-                            <a class="pull-right" href="{{ path('contact_show', { 'id': note.contact.id }) }}">Contact <span class="glyphicon glyphicon-user"  aria-hidden="true"> </span></a>
+                            <a class="pull-right" href="{{ path('contact_show', { 'id': note.contact.id }) }}">{{ "Contact"|trans }} <span class="glyphicon glyphicon-user"  aria-hidden="true"> </span></a>
                         {% elseif note.type == 2 %}
-                            <a class="pull-right" href="{{ path('event_show', { 'id': note.event.id }) }}">Event <span class="glyphicon glyphicon-calendar"  aria-hidden="true"> </span></a>
+                            <a class="pull-right" href="{{ path('event_show', { 'id': note.event.id }) }}">{{ "Event"|trans }} <span class="glyphicon glyphicon-calendar"  aria-hidden="true"> </span></a>
                         {% elseif note.type == 3 %}
-                            <a  class="pull-right" href="#">Location <span class="glyphicon glyphicon-map-marker"  aria-hidden="true"> </span></a>
+                            <a  class="pull-right" href="{{ path('location_show', { 'id': note.location.id }) }}">{{ "Location"|trans }} <span class="glyphicon glyphicon-map-marker"  aria-hidden="true"> </span></a>
                         {% else %}
 
                         {% endif %}
@@ -28,8 +28,8 @@
 
                 <div class="panel-footer">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <a href="{{ path('note_show', { 'id': note.id }) }}" class="btn btn-default" role="button">Show</a>
-                        <a href="{{ path('note_edit', { 'id': note.id }) }}" class="btn btn-default" role="button">Edit</a>
+                        <a href="{{ path('note_show', { 'id': note.id }) }}" class="btn btn-default" role="button">{{ "Show"|trans }}</a>
+                        <a href="{{ path('note_edit', { 'id': note.id }) }}" class="btn btn-default" role="button">{{ "Edit"|trans }}</a>
                     </div>
                 </div>
             </div>

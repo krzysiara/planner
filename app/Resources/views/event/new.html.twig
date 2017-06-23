@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}New Event{% endblock %}
+{% block pageHeader %}{{"New Event"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_base_form.html.twig'
     with {"form": form, "submitValue": "Create", "path": path('event_index')} %}

@@ -20,7 +20,7 @@ class NoteType extends AbstractType
             ->add('description', 'textarea', [
                 'attr'=>['class'=>'tinymce']
             ])
-            ->add('type', 'hidden', ['data' => $options['note_type']] )
+            ->add('type', 'hidden', ['data' => $options['note_type']])
             ->add('color', 'entity', [
                 'class' => 'AppBundle:Color',
                 'choice_label' => 'name',
@@ -28,39 +28,39 @@ class NoteType extends AbstractType
                 'required'=>false
             ]);
 
-        if($options['chose_parent_entity']){
+        if ($options['chose_parent_entity']) {
             $ownerProfile = $options['owner'];
-            if($options['note_type'] == Note::EVENT_TYPE){
+            if ($options['note_type'] == Note::EVENT_TYPE) {
                 $builder ->add('event', 'entity', [
                     'class' => 'AppBundle:Event',
                     'choice_label' => 'title',
                     'multiple' => false,
                     'required'=>true,
-                    'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                    'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('e')
                             ->where('e.profile = :owner')
                             ->setParameter('owner', $ownerProfile);
                     },
                 ]);
-            }elseif($options['note_type'] == Note::LOCATION_TYPE){
+            } elseif ($options['note_type'] == Note::LOCATION_TYPE) {
                 $builder ->add('location', 'entity', [
                     'class' => 'AppBundle:Location',
                     'choice_label' => 'name',
                     'multiple' => false,
                     'required'=>true,
-                    'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                    'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('l')
                             ->where('l.profile = :owner')
                             ->setParameter('owner', $ownerProfile);
                     },
                 ]);
-            }elseif($options['note_type'] == Note::CONTACT_TYPE){
+            } elseif ($options['note_type'] == Note::CONTACT_TYPE) {
                 $builder ->add('contact', 'entity', [
                     'class' => 'AppBundle:Contact',
                     'choice_label' => 'fullName',
                     'multiple' => false,
                     'required'=>true,
-                    'query_builder' => function (EntityRepository $er) use ($ownerProfile){
+                    'query_builder' => function (EntityRepository $er) use ($ownerProfile) {
                         return $er->createQueryBuilder('l')
                             ->where('l.profile = :owner')
                             ->setParameter('owner', $ownerProfile);
@@ -90,6 +90,4 @@ class NoteType extends AbstractType
     {
         return 'appbundle_note';
     }
-
-
 }

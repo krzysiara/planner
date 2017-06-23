@@ -6,7 +6,6 @@ use AppBundle\Entity\Contact;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Note;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Form;
@@ -22,14 +21,22 @@ class NoteController extends BaseController
     /**
      * Lists all note entities.
      *
-     * @Route("/", name="note_index")
+     * @Route(
+     *     "/",
+     *     defaults={"page": 1},
+     *     name="note_index",
+     * )
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="note_index_paginated",
+     * )
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $notes = $em->getRepository('AppBundle:Note')->findAll();
+        $notes = $em->getRepository('AppBundle:Note')->findAllPaginated($page, $this->getUserProfile());
 
         return $this->render('note/index.html.twig', array(
             'notes' => $notes,
@@ -41,6 +48,9 @@ class NoteController extends BaseController
      *
      * @Route("/event/new/{event}", name="note_add_to_event")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Event   $event
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addNoteToEventAction(Request $request, Event $event)
     {
@@ -62,6 +72,9 @@ class NoteController extends BaseController
      *
      * @Route("/contact/new/{contact}", name="note_add_to_contact")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Contact $contact
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addNoteToContactAction(Request $request, Contact $contact)
     {
@@ -83,6 +96,9 @@ class NoteController extends BaseController
      *
      * @Route("/location/new/{location}", name="note_add_to_location")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Location $location
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addNoteToLocationAction(Request $request, Location $location)
     {
@@ -93,7 +109,8 @@ class NoteController extends BaseController
             'owner' => $this->getUserProfile(),
             'chose_parent_entity' => false
         ]);
-        $backRoute = $this->generateUrl('note_show', ['id'=>$note->getId()]);
+
+        $backRoute = $this->generateUrl('location_show', ['id'=>$location->getId()]);
         $response = $this->newNote($note, $form, $request, $backRoute);
         return $response;
     }
@@ -103,6 +120,8 @@ class NoteController extends BaseController
      *
      * @Route("/event/new", name="event_note_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newEventNoteAction(Request $request)
     {
@@ -123,6 +142,8 @@ class NoteController extends BaseController
      *
      * @Route("/contact/new", name="contact_note_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newContactNoteAction(Request $request)
     {
@@ -143,6 +164,8 @@ class NoteController extends BaseController
      *
      * @Route("/location/new", name="location_note_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newLocationNoteAction(Request $request)
     {
@@ -162,30 +185,34 @@ class NoteController extends BaseController
      * @param Note $note
      * @param Form $form
      * @param Request $request
+     * @param $backRoute
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-   private function newNote(Note $note, Form $form, Request $request, $backRoute){
-       $form->handleRequest($request);
-       if ($form->isSubmitted() && $form->isValid()) {
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($note);
-           $em->flush();
+    private function newNote(Note $note, Form $form, Request $request, $backRoute)
+    {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
 
-           return $this->redirectToRoute('note_show', array('id' => $note->getId()));
-       }
+            return $this->redirectToRoute('note_show', array('id' => $note->getId()));
+        }
 
-       return $this->render('note/new.html.twig', array(
-           'note' => $note,
-           'form' => $form->createView(),
-           'backRoute' =>$backRoute
-       ));
-   }
+        return $this->render('note/new.html.twig', array(
+            'note' => $note,
+            'form' => $form->createView(),
+            'backRoute' =>$backRoute
+        ));
+    }
 
     /**
      * Finds and displays a note entity.
      *
      * @Route("/{id}", name="note_show")
      * @Method("GET")
+     * @param Note $note
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Note $note)
     {
@@ -202,6 +229,9 @@ class NoteController extends BaseController
      *
      * @Route("/{id}/edit", name="note_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Note    $note
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Note $note)
     {
@@ -230,6 +260,9 @@ class NoteController extends BaseController
      *
      * @Route("/{id}", name="note_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Note    $note
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Note $note)
     {
@@ -254,7 +287,7 @@ class NoteController extends BaseController
      */
     private function createDeleteForm(Note $note)
     {
-        return $this->createFormBuilder()
+        return $this->createFormBuilder(null, ['attr' => ['id' => 'delete_form']])
             ->setAction($this->generateUrl('note_delete', array('id' => $note->getId())))
             ->setMethod('DELETE')
             ->getForm()

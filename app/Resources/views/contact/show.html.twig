@@ -2,7 +2,6 @@
 {% block pageHeader %}{{ contact.fullName }}{% endblock %}
 
 {% block pageActions %}
-
     <a class="btn btn-default" href="{{ path('contact_index') }}">Back to the list</a>
     <a class="btn btn-default" href="{{ path('note_add_to_contact' , {'contact': contact.id}) }}"><span class="glyphicon glyphicon-list-alt"></span> Add note</a>
     <a class="btn btn-default" href="{{ path('contact_edit', { 'id': contact.id }) }}">Edit</a>
@@ -10,38 +9,42 @@
        Delete
     </button>
 {% endblock %}
+
 {% block body %}
-    <h1>Contact</h1>
+    <h1>Contact{{""|trans }}</h1>
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{"Id"|trans }}</th>
                 <td>{{ contact.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>{{"Name"|trans }}</th>
                 <td>{{ contact.name }}</td>
             </tr>
             <tr>
-                <th>Surname</th>
+                <th>{{"Surname"|trans }}</th>
                 <td>{{ contact.surname }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>{{"Phone"|trans }}</th>
                 <td>{{ contact.phone }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>{{"Email"|trans }}</th>
                 <td>{{ contact.email }}</td>
             </tr>
             <tr>
-                <th>Birthday</th>
+                <th>{{"Birthday"|trans }}</th>
                 <td>{% if contact.birthday %}{{ contact.birthday|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
 </div>
+    <div class="notes">
+        {% include 'includes/_notes_group.html.twig' with {"notes": contact.notes} only %}
+    </div>
 {% include 'includes/_delete_modal.html.twig' with {"delete_form": delete_form} only %}
 
 {% endblock %}

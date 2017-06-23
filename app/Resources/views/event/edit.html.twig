@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}Event edit{% endblock %}
+{% block pageHeader %}{{"Event edit"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_base_form.html.twig'
         with {"form": edit_form, "submitValue": "Edit", "path": path('event_show', {'id':event.id})} %}

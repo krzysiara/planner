@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% block pageHeader %}Location edit{% endblock %}
+{% block pageHeader %} {{"Location edit"|trans }}{% endblock %}
 {% block body %}
     {% include 'includes/_base_form.html.twig' with
     {"form": edit_form, "submitValue": "Edit", "path": path('location_show', {'id':location.id})} %}

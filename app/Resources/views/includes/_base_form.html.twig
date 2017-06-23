@@ -4,7 +4,7 @@
      {% endif %}
     {{ form_widget(form) }}
     <div class="pull-right">
-        <a  href="{{ path }}" class="btn btn-default">Back</a>
+        <a  href="{{ path }}" class="btn btn-default">{{ "Back"|trans }}</a>
         <input class="btn  btn-accept" type="submit" value="{{ submitValue |trans }}" />
     </div>
 {{ form_end(form) }}

@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 
 /**
  * Location
@@ -13,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Location
 {
+    const NUM_ITEMS = 10;
+
     /**
      * @var int
      *
@@ -84,7 +88,7 @@ class Location
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -107,7 +111,7 @@ class Location
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -130,7 +134,7 @@ class Location
     /**
      * Get lat
      *
-     * @return float 
+     * @return float
      */
     public function getLat()
     {
@@ -153,7 +157,7 @@ class Location
     /**
      * Get lng
      *
-     * @return float 
+     * @return float
      */
     public function getLng()
     {
@@ -176,7 +180,7 @@ class Location
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -189,7 +193,7 @@ class Location
      * @param \AppBundle\Entity\Profile $profile
      * @return Location
      */
-    public function setProfile(\AppBundle\Entity\Profile $profile = null)
+    public function setProfile(Profile $profile = null)
     {
         $this->profile = $profile;
 
@@ -209,12 +213,12 @@ class Location
     /**
      * Add events
      *
-     * @param \AppBundle\Entity\Event $events
+     * @param \AppBundle\Entity\Event $event
      * @return Location
      */
-    public function addEvent(\AppBundle\Entity\Event $events)
+    public function addEvent(Event $event)
     {
-        $this->events[] = $events;
+        $this->events[] = $event;
 
         return $this;
     }
@@ -222,17 +226,17 @@ class Location
     /**
      * Remove events
      *
-     * @param \AppBundle\Entity\Event $events
+     * @param \AppBundle\Entity\Event $event
      */
-    public function removeEvent(\AppBundle\Entity\Event $events)
+    public function removeEvent(Event $event)
     {
-        $this->events->removeElement($events);
+        $this->events->removeElement($event);
     }
 
     /**
      * Get events
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEvents()
     {
@@ -245,7 +249,7 @@ class Location
      * @param \AppBundle\Entity\Note $notes
      * @return Location
      */
-    public function addNote(\AppBundle\Entity\Note $notes)
+    public function addNote(Note $notes)
     {
         $this->notes[] = $notes;
 
@@ -257,7 +261,7 @@ class Location
      *
      * @param \AppBundle\Entity\Note $notes
      */
-    public function removeNote(\AppBundle\Entity\Note $notes)
+    public function removeNote(Note $notes)
     {
         $this->notes->removeElement($notes);
     }
@@ -265,7 +269,7 @@ class Location
     /**
      * Get notes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotes()
     {
@@ -278,7 +282,7 @@ class Location
      * @param \AppBundle\Entity\Contact $contacts
      * @return Location
      */
-    public function addContact(\AppBundle\Entity\Contact $contacts)
+    public function addContact(Contact $contacts)
     {
         $this->contacts[] = $contacts;
 
@@ -290,7 +294,7 @@ class Location
      *
      * @param \AppBundle\Entity\Contact $contacts
      */
-    public function removeContact(\AppBundle\Entity\Contact $contacts)
+    public function removeContact(Contact $contacts)
     {
         $this->contacts->removeElement($contacts);
     }
@@ -298,10 +302,30 @@ class Location
     /**
      * Get contacts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContacts()
     {
         return $this->contacts;
+    }
+
+    /**
+     * @param $latlng
+     * @return $this
+     */
+    public function setLatLng($latlng)
+    {
+        $this->setLat($latlng['lat']);
+        $this->setLng($latlng['lng']);
+        return $this;
+    }
+
+    /**
+     * @Assert\NotBlank()
+     * @OhAssert\LatLng()
+     */
+    public function getLatLng()
+    {
+        return array('lat'=>$this->getLat(),'lng'=>$this->getLng());
     }
 }

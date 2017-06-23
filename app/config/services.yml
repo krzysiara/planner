@@ -47,3 +47,30 @@ services:
           factory: ['@doctrine.orm.default_entity_manager', getRepository]
           arguments:
               - AppBundle\Entity\User
+
+  app.repository.settings:
+            class: Doctrine\ORM\EntityRepository
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - AppBundle\Entity\Settings
+
+  app.calendar_listener:
+          class: AppBundle\EventListener\CalendarEventListener
+          arguments: ['@security.token_storage', '@app.repository.event', '@router']
+          tags:
+              - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents}
+
+  app_user_registration:
+          class: AppBundle\Form\RegistrationType
+          arguments: ['AppBundle\Entity\User']
+          tags:
+              - { name: form.type, alias: app_user_registration }
+
+
+  app.service.iCalService:
+          class: AppBundle\Service\ICalService
+          arguments: ['@app.repository.event', '@welp_ical.factory']
+
+  app.service.event_notification:
+      class: AppBundle\Service\EventNotification
+      arguments: ['@twig','@mailer','@app.repository.user', '@app.repository.event']

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    {% include 'includes/_profile_menu.html.twig' %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                {% include 'includes/_base_alert.html.twig' with {"type":  label , "message":  flash } %}
+            {% endfor %}
+        {% endfor %}
+        <h1 class="page-header">{{ "Account Edit"|trans }}</h1>
+        {% include 'includes/_base_form.html.twig'
+        with {"form": form, "submitValue": "Edit"|trans, "path": path('fos_user_profile_edit')} %}
+
+
+    </div>
+</div>
+
+{% block javascripts %}
+    {% include 'includes/_date_picker_init.html.twig' %}
+{% endblock %}
+
+

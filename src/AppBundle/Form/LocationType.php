@@ -15,8 +15,9 @@ class LocationType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('lat', 'number')
-            ->add('lng', 'number')
+            ->add('latlng', 'oh_google_maps', [
+                'include_gmaps_js'=>false
+            ])
             ->add('description', 'textarea', [
                 'attr'=>['class'=>'tinymce']
             ]);
@@ -39,6 +40,4 @@ class LocationType extends AbstractType
     {
         return 'appbundle_location';
     }
-
-
 }

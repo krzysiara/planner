@@ -1,0 +1,97 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Settings
+ *
+ * @ORM\Table(name="settings")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SettingsRepository")
+ */
+class Settings
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * One User has One Settings.
+     * @ORM\OneToOne(targetEntity="User", inversedBy="settings", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="send_notifications", type="boolean")
+     */
+    private $sendNotifications = true;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Settings
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set sendNotifications
+     *
+     * @param boolean $sendNotifications
+     *
+     * @return Settings
+     */
+    public function setSendNotifications($sendNotifications)
+    {
+        $this->sendNotifications = $sendNotifications;
+
+        return $this;
+    }
+
+    /**
+     * Get sendNotifications
+     *
+     * @return boolean
+     */
+    public function getSendNotifications()
+    {
+        return $this->sendNotifications;
+    }
+}
