@@ -35,6 +35,25 @@ class LocationRepository extends EntityRepository
     }
 
     /**
+     * Save location
+     * @param Location $location
+     */
+    public function save(Location $location){
+        $this->_em->persist($location);
+        $this->_em->flush();
+    }
+
+    /**
+     * Remove location
+     * @param  Location $location
+     */
+    public function remove(Location $location){
+        $this->_em->remove($location);
+        $this->_em->flush();
+    }
+
+
+    /**
      * Query all entities.
      *
      * @param $profile Profile

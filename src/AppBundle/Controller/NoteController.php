@@ -39,8 +39,8 @@ class NoteController extends BaseController
      */
     public function indexAction($page)
     {
-        $em = $this->getDoctrine()->getManager();
-        $notes = $em->getRepository('AppBundle:Note')->findAllPaginated($this->getUserProfile(), $page);
+        $repository = $this->get("app.repository.note");
+        $notes = $repository->findAllPaginated($this->getUserProfile(), $page);
 
         return $this->render('note/index.html.twig', array(
             'notes' => $notes,
@@ -212,7 +212,8 @@ class NoteController extends BaseController
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $repository = $this->get("app.repository.note");
+            $repository->save($note);
 
             return $this->redirectToRoute('note_edit', array('id' => $note->getId()));
         }
@@ -239,9 +240,8 @@ class NoteController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($note);
-            $em->flush();
+            $repository = $this->get("app.repository.note");
+            $repository->remove($note);
         }
 
         return $this->redirectToRoute('note_index');
@@ -294,9 +294,8 @@ class NoteController extends BaseController
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($note);
-            $em->flush();
+            $repository = $this->get("app.repository.note");
+            $repository->save($note);
 
             return $this->redirectToRoute('note_show', array('id' => $note->getId()));
         }

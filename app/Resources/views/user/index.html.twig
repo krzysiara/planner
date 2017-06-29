@@ -38,7 +38,18 @@
                              <form action="{{ path('user_enable', {"user":user.id})}}" method="post">
                                  <button class="btn btn-default" name="enable_{{ user.id }}">Enable</button>
                              </form>
-                             {% endif %}
+                         {% endif %}
+                        {% if user.hasRole("ROLE_ADMIN") %}
+                            <form action="{{ path('user_demote', {"user":user.id})}}" method="post">
+                                <button class="btn btn-default" name="demote_{{ user.id }}">Demote</button>
+                            </form>
+                        {% else %}
+
+                            <form action="{{ path('user_promote', {"user":user.id})}}" method="post">
+                                <button class="btn btn-default" name="promote_{{ user.id }}">Promote</button>
+                            </form>
+                        {% endif %}
+
                         <a class="btn btn-default" href="{{ path('homepage', { '_switch_user': user.username }) }}">{{"Impersonate"|trans }}</a>
 
                     {% endif %}

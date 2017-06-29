@@ -34,6 +34,23 @@ class ContactRepository extends EntityRepository
     }
 
     /**
+     * Remove contact
+     * @param Contact $contact
+     */
+    public function remove(Contact $contact){
+        $this->_em->remove($contact);
+        $this->_em->flush();
+    }
+
+    /**
+     * save contact
+     * @param Contact $contact
+     */
+    public function save(Contact $contact){
+        $this->_em->persist($contact);
+        $this->_em->flush();
+    }
+    /**
      * Query all entities.
      *
      * @param $profile Profile

@@ -46,6 +46,7 @@ class Note
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      *
+     *
      */
     private $description;
 

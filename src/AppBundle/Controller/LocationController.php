@@ -37,8 +37,8 @@ class LocationController extends BaseController
      */
     public function indexAction($page)
     {
-        $em = $this->getDoctrine()->getManager();
-        $locations = $em->getRepository('AppBundle:Location')->findAllPaginated($this->getUserProfile(), $page);
+        $repository = $this->get("app.repository.location");
+        $locations = $repository->findAllPaginated($this->getUserProfile(), $page);
 
 
         return $this->render('location/index.html.twig', array(
@@ -62,9 +62,8 @@ class LocationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($location);
-            $em->flush();
+            $repository = $this->get("app.repository.location");
+            $repository->save($location);
             $this->addFlash('success', 'form.location_new.success');
 
             return $this->redirectToRoute('location_show', array('id' => $location->getId()));
@@ -112,7 +111,8 @@ class LocationController extends BaseController
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $repository = $this->get("app.repository.location");
+            $repository->save($location);
             $this->addFlash('success', 'form.location_edit.success');
 
             return $this->redirectToRoute('location_edit', array('id' => $location->getId()));
@@ -141,9 +141,8 @@ class LocationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($location);
-            $em->flush();
+            $repository = $this->get("app.repository.location");
+            $repository->remove($location);
             $this->addFlash('success', 'form.location_delete.success');
         }
 

@@ -107,6 +107,24 @@ class EventRepository extends EntityRepository
     }
 
     /**
+     * save event
+     * @param Event $event
+     */
+    public function save(Event $event){
+        $this->_em->persist($event);
+        $this->_em->flush();
+    }
+
+    /**
+     * Remove event
+     * @param Event $event
+     */
+    public function remove(Event $event){
+        $this->_em->remove($event);
+        $this->_em->flush();
+    }
+
+    /**
      * Query all entities.
      *
      * @param $profile Profile

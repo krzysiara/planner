@@ -8,6 +8,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\NullOutput;
 
 /**
  * User controller.
@@ -73,4 +77,65 @@ class UserController extends BaseController
 
         return $this->redirectToRoute('user_index');
     }
+
+    /**
+     * Promote user
+     * @Route("/promote/{user}", name="user_promote")
+     * @Method("POST")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Throwable
+     */
+    public function promoteUser(User $user){
+        $kernel = $this->get('kernel');
+        $application = new Application($kernel);
+
+        $command = $application->find('fos:user:promote');
+        $arguments = array(
+            'command' => 'fos:user:promote',
+            'username'    => $user->getUsername(),
+            'role'  => 'ROLE_ADMIN',
+        );
+
+        $output = new NullOutput();
+        $input = new ArrayInput($arguments);
+        $command->run($input, $output);
+        $this->addFlash("success", 'user promoted');
+
+        return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * Promote user
+     * @Route("/demote/{user}", name="user_demote")
+     * @Method("POST")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Throwable
+     */
+    public function demoteUser(User $user){
+        if($user!=$this->getUser()){
+            $kernel = $this->get('kernel');
+            $application = new Application($kernel);
+
+            $command = $application->find('fos:user:demote');
+            $arguments = array(
+                'command' => 'fos:user:demote',
+                'username'    => $user->getUsername(),
+                'role'  => 'ROLE_ADMIN',
+            );
+
+            $output = new NullOutput();
+            $input = new ArrayInput($arguments);
+            $command->run($input, $output);
+            $this->addFlash("success", 'user demoted');
+        }else{
+            $this->addFlash("danger", "Nie możesz zmienić swojej roli!");
+        }
+
+        return $this->redirectToRoute('user_index');
+    }
+
+
+
 }

@@ -122,9 +122,8 @@ class EventController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($event);
-            $em->flush();
+            $repository = $this->get("app.repository.event");
+            $repository->save($event);
             $this->addFlash('success', 'form.event_new.success');
 
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
@@ -171,7 +170,8 @@ class EventController extends BaseController
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $repository = $this->get("app.repository.event");
+            $repository->save($event);
             $this->addFlash('success', 'form.event_edit.success');
 
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
@@ -199,10 +199,9 @@ class EventController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $repository = $this->get("app.repository.event");
             $this->addFlash('success', 'form.event_delete.success');
-            $em->remove($event);
-            $em->flush();
+            $repository->remove($event);
         }
 
         return $this->redirectToRoute('event_index');

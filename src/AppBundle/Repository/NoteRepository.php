@@ -34,6 +34,25 @@ class NoteRepository extends EntityRepository
     }
 
     /**
+     * Save note
+     * @param Note $note
+     */
+    public function save(Note $note){
+        $this->_em->persist($note);
+        $this->_em->flush();
+    }
+
+    /**
+     * Remove note
+     * @param  Note $note
+     */
+    public function remove(Note $note){
+        $this->_em->remove($note);
+        $this->_em->flush();
+    }
+
+
+    /**
      * Query all entities.
      *
      * @param $profile Profile

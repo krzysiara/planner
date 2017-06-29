@@ -36,9 +36,9 @@ class ContactController extends BaseController
      */
     public function indexAction($page)
     {
-        $em = $this->getDoctrine()->getManager();
+        $contactRep = $this->get("app.repository.contact");
 
-        $contacts = $em->getRepository('AppBundle:Contact')->findAllPaginated($this->getUserProfile(), $page);
+        $contacts = $contactRep->findAllPaginated($this->getUserProfile(), $page);
 
         return $this->render('contact/index.html.twig', array(
             'contacts' => $contacts,
@@ -62,9 +62,8 @@ class ContactController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
+            $contactRep = $this->get("app.repository.contact");
+            $contactRep->save($contact);
 
             $this->addFlash('success', 'form.contact_new.success');
 
@@ -111,9 +110,8 @@ class ContactController extends BaseController
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
+            $contactRep = $this->get("app.repository.contact");
+            $contactRep->save($contact);
             $this->addFlash('success', 'form.contact_edit.success');
 
             return $this->redirectToRoute('contact_edit', array('id' => $contact->getId()));
@@ -141,10 +139,9 @@ class ContactController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $contactRep = $this->get("app.repository.contact");
+            $contactRep->remove($contact);
             $this->addFlash('success', 'form.contact_delete.success');
-            $em->remove($contact);
-            $em->flush();
         }
 
         return $this->redirectToRoute('contact_index');
